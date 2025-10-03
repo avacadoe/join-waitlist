@@ -112,7 +112,7 @@ export default function Home() {
                     style={{
                       // approximate halftone look with grayscale + contrast and a touch of desaturation
                       filter: "sharpness(1.15) contrast(1.15) saturate(0.75)",
-                      transform: "scale(2.57) translateY(24px)", // push it large like the screenshot and nudge further downward
+                      transform: "translateY(24px)", // push it large like the screenshot and nudge further downward
                     }}
                   />
                 </div>
