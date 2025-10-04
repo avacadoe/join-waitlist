@@ -393,7 +393,7 @@ export default function Home() {
         >
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
             <div
-              className="absolute left-1/2 top-12 h-[420px] w-[420px] -translate-x-1/2 rounded-full"
+              className="absolute left-1/2 top-12 h-[260px] w-[260px] -translate-x-1/2 rounded-full md:h-[360px] md:w-[360px] lg:h-[420px] lg:w-[420px]"
               style={{
                 background: "radial-gradient(circle, rgba(255,107,107,0.18) 0%, rgba(255,107,107,0) 65%)",
               }}
@@ -402,11 +402,11 @@ export default function Home() {
             <div className="absolute inset-x-0 top-0 h-[1px] bg-black/10" />
           </div>
 
-          <div className="relative z-[1] mx-auto max-w-[1200px] px-6 py-20 lg:px-16 lg:py-24">
-            <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr]">
+          <div className="relative z-[1] mx-auto max-w-[1200px] px-6 py-12 md:py-16 lg:px-16 lg:py-24">
+            <div className="grid gap-10 md:gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
               <div>
                 <p
-                  className="mb-6 text-xs uppercase"
+                  className="mb-6 text-[10px] uppercase md:text-xs"
                   style={{
                     color: "#FF6B6B",
                     fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
@@ -419,7 +419,7 @@ export default function Home() {
                   id="footer-title"
                   style={{
                     fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                    fontSize: "clamp(96px, 20vw, 200px)",
+                    fontSize: "clamp(64px, 18vw, 200px)",
                     fontWeight: 700,
                     lineHeight: 0.88,
                     letterSpacing: "-0.08em",
@@ -431,7 +431,7 @@ export default function Home() {
                   Avacado
                 </h2>
                 <p
-                  className="mt-6 max-w-[560px] text-sm leading-relaxed"
+                  className="mt-6 max-w-[560px] text-xs leading-relaxed md:text-sm"
                   style={{
                     color: "#555555",
                     fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -441,10 +441,10 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid gap-12 sm:grid-cols-2">
-                <div className="space-y-4">
+              <div className="grid gap-6 sm:grid-cols-2 sm:gap-10">
+                <div className="space-y-3 sm:space-y-4">
                   <h3
-                    className="text-xs font-semibold uppercase"
+                    className="text-[11px] font-semibold uppercase md:text-xs"
                     style={{
                       fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                       color: "#8A8A8A",
@@ -454,7 +454,7 @@ export default function Home() {
                     Product
                   </h3>
                   <ul
-                    className="space-y-2 text-sm"
+                    className="space-y-1 text-xs md:space-y-2 md:text-sm"
                     style={{
                       fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                       color: "#1F1F1F",
@@ -466,9 +466,9 @@ export default function Home() {
                     <li>Roadmap</li>
                   </ul>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <h3
-                    className="text-xs font-semibold uppercase"
+                    className="text-[11px] font-semibold uppercase md:text-xs"
                     style={{
                       fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                       color: "#8A8A8A",
@@ -478,7 +478,7 @@ export default function Home() {
                     Company
                   </h3>
                   <ul
-                    className="space-y-2 text-sm"
+                    className="space-y-1 text-xs md:space-y-2 md:text-sm"
                     style={{
                       fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                       color: "#1F1F1F",
@@ -493,9 +493,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-16 flex flex-col gap-4 border-t border-black/10 pt-6 md:flex-row md:items-center md:justify-between">
+            <div className="mt-12 flex flex-col gap-4 border-t border-black/10 pt-6 text-[10px] md:mt-16 md:flex-row md:items-center md:justify-between md:text-xs">
               <p
-                className="text-xs uppercase"
+                className="uppercase"
                 style={{
                   fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                   color: "#7A7A7A",
@@ -505,7 +505,7 @@ export default function Home() {
                 © {currentYear} Avacado Labs. All rights reserved.
               </p>
               <div
-                className="flex flex-wrap items-center gap-4 text-xs uppercase md:gap-6"
+                className="flex flex-wrap items-center gap-3 uppercase md:gap-6"
                 style={{
                   fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                   color: "#7A7A7A",
