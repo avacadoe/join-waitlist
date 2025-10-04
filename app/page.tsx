@@ -5,10 +5,12 @@ import Image from "next/image"
 import { FeatureCard } from "@/components/feature-card"
 import { Navbar } from "@/components/navbar"
 import { SectionHeader } from "@/components/section-header"
+import { WaitlistForm } from "@/components/waitlist-form"
 import "./pixel-section.css"
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false)
+  const currentYear = new Date().getFullYear()
 
   return (
     <>
@@ -75,7 +77,8 @@ export default function Home() {
 
                   {/* CTA */}
                   <div>
-                    <button
+                    <a
+                      href="#waitlist"
                       className="inline-flex h-10 items-center justify-center rounded-md border px-6 text-sm font-semibold transition-colors"
                       style={{
                         backgroundColor: "#FF6B6B",
@@ -94,7 +97,7 @@ export default function Home() {
                       }}
                     >
                       Join Waitlist →
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -276,6 +279,193 @@ export default function Home() {
 
           {showOverlay && <div className="ref-overlay" aria-hidden="true" />}
         </section>
+
+        <section
+          id="waitlist"
+          className="mt-24 pb-24 pl-6 pr-0 md:pl-80"
+          aria-labelledby="waitlist-title"
+        >
+          <div className="w-full max-w-[980px] md:ml-0 md:mr-auto">
+            <div className="flex flex-col items-start gap-10 md:flex-row md:items-stretch">
+              <div className="w-full md:w-1/2">
+                <div className="h-full rounded-[12px] border border-black/10 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+                  <div className="mb-6 text-left">
+                    <h2
+                    id="waitlist-title"
+                    className="text-[28px] font-semibold tracking-tight text-[#1F1F1F]"
+                    style={{
+                      fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    Secure your spot for Avacado 
+                  </h2>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    We'll reach out once the privacy wallet is ready. 
+                  </p>
+                </div>
+                <WaitlistForm />
+              </div>
+            </div>
+            <div className="flex w-full items-center justify-center md:w-1/2 md:justify-end">
+              <Image
+                src="/wait.png"
+                alt="Illustration of a person waiting to join the Avacado waitlist"
+                width={420}
+                height={420}
+                className="h-auto w-full max-w-[360px] origin-center scale-110 object-contain opacity-95 drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-transform duration-300 md:scale-200"
+                priority
+              />
+            </div>
+          </div>
+          </div>
+        </section>
+
+        <footer
+          className="relative mt-32 overflow-hidden border-t border-black/10"
+          aria-labelledby="footer-title"
+          style={{
+            backgroundColor: "#ECECEC",
+            backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+            backgroundSize: "12px 12px",
+          }}
+        >
+          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+            <div
+              className="absolute left-1/2 top-12 h-[420px] w-[420px] -translate-x-1/2 rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(255,107,107,0.18) 0%, rgba(255,107,107,0) 65%)",
+              }}
+            />
+            <div className="absolute inset-x-0 bottom-0 h-[1px] bg-black/10" />
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-black/10" />
+          </div>
+
+          <div className="relative z-[1] mx-auto max-w-[1200px] px-6 py-20 lg:px-16 lg:py-24">
+            <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr]">
+              <div>
+                <p
+                  className="mb-6 text-xs uppercase"
+                  style={{
+                    color: "#FF6B6B",
+                    fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                    letterSpacing: "0.4em",
+                  }}
+                >
+                  Privacy-first wallet
+                </p>
+                <h2
+                  id="footer-title"
+                  style={{
+                    fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontSize: "clamp(96px, 20vw, 200px)",
+                    fontWeight: 700,
+                    lineHeight: 0.88,
+                    letterSpacing: "-0.08em",
+                    textTransform: "uppercase",
+                    color: "#FF6B6B",
+                    textShadow: "0 24px 60px rgba(255, 107, 107, 0.35)",
+                  }}
+                >
+                  Avacado
+                </h2>
+                <p
+                  className="mt-6 max-w-[560px] text-sm leading-relaxed"
+                  style={{
+                    color: "#555555",
+                    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                  }}
+                >
+                  Built for teams that expect complete privacy, zero-knowledge compliance, and lightning-fast execution across chains.
+                </p>
+              </div>
+
+              <div className="grid gap-12 sm:grid-cols-2">
+                <div className="space-y-4">
+                  <h3
+                    className="text-xs font-semibold uppercase"
+                    style={{
+                      fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      color: "#8A8A8A",
+                      letterSpacing: "0.25em",
+                    }}
+                  >
+                    Product
+                  </h3>
+                  <ul
+                    className="space-y-2 text-sm"
+                    style={{
+                      fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                      color: "#1F1F1F",
+                    }}
+                  >
+                    <li>Waitlist</li>
+                    <li>Security Playbook</li>
+                    <li>Docs &amp; SDK</li>
+                    <li>Roadmap</li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h3
+                    className="text-xs font-semibold uppercase"
+                    style={{
+                      fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      color: "#8A8A8A",
+                      letterSpacing: "0.25em",
+                    }}
+                  >
+                    Company
+                  </h3>
+                  <ul
+                    className="space-y-2 text-sm"
+                    style={{
+                      fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                      color: "#1F1F1F",
+                    }}
+                  >
+                    <li>About</li>
+                    <li>Careers</li>
+                    <li>Press Kit</li>
+                    <li>Legal</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 flex flex-col gap-4 border-t border-black/10 pt-6 md:flex-row md:items-center md:justify-between">
+              <p
+                className="text-xs uppercase"
+                style={{
+                  fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                  color: "#7A7A7A",
+                  letterSpacing: "0.32em",
+                }}
+              >
+                © {currentYear} Avacado Labs. All rights reserved.
+              </p>
+              <div
+                className="flex flex-wrap items-center gap-4 text-xs uppercase md:gap-6"
+                style={{
+                  fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                  color: "#7A7A7A",
+                  letterSpacing: "0.28em",
+                }}
+              >
+                <a href="mailto:hello@avacado.xyz" className="transition-opacity hover:opacity-70">
+                  Contact
+                </a>
+                <span className="hidden h-[1px] w-12 bg-black/15 md:block" aria-hidden="true" />
+                <a href="#waitlist" className="transition-opacity hover:opacity-70">
+                  Join Waitlist
+                </a>
+                <span className="hidden h-[1px] w-12 bg-black/15 md:block" aria-hidden="true" />
+                <a href="/" className="transition-opacity hover:opacity-70">
+                  Privacy
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   )
