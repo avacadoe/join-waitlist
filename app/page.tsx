@@ -280,17 +280,79 @@ export default function Home() {
           {showOverlay && <div className="ref-overlay" aria-hidden="true" />}
         </section>
 
+        {/* Powered by section */}
+        <section
+          className="mx-auto mt-20 max-w-[1080px] px-4 md:px-6 lg:px-8"
+          aria-labelledby="powered-by-title"
+        >
+          <div className="flex items-center justify-center">
+            <span
+              id="powered-by-title"
+              className="text-xs font-semibold uppercase"
+              style={{
+                fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                letterSpacing: "0.4em",
+                color: "#FF8A8A",
+              }}
+            >
+              Powered by
+            </span>
+          </div>
+          <div className="relative mt-8">
+            <div className="grid grid-cols-3 overflow-hidden rounded-[4px] border border-black/15 bg-[#F5F5F5]">
+              <div className="flex h-24 items-center justify-center border-r border-black/15 bg-[#F0F0F0] md:h-36">
+                <Image
+                  src="/avax.png"
+                  alt="Avalanche logo"
+                  width={160}
+                  height={80}
+                  className="h-8 w-auto object-contain md:h-10"
+                  style={{
+                    filter: "grayscale(1) brightness(1.1)",
+                    opacity: 0.75,
+                  }}
+                />
+              </div>
+              <div className="flex h-24 items-center justify-center border-r border-black/15 bg-[#F0F0F0] md:h-36">
+                <Image
+                  src="/1inch.png"
+                  alt="1inch logo"
+                  width={160}
+                  height={80}
+                  className="h-10 w-auto object-contain md:h-12"
+                  style={{
+                    filter: "grayscale(1) brightness(1.1)",
+                    opacity: 0.75,
+                  }}
+                />
+              </div>
+              <div className="flex h-24 items-center justify-center bg-[#F0F0F0] md:h-36">
+                <Image
+                  src="/self.png"
+                  alt="Self logo"
+                  width={160}
+                  height={80}
+                  className="h-10 w-auto object-contain md:h-12"
+                  style={{
+                    filter: "grayscale(1) brightness(1.1)",
+                    opacity: 0.75,
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section
           id="waitlist"
-          className="mt-24 pb-24 pl-6 pr-0 md:pl-80"
+          className="mt-24 px-6 pb-24 md:px-10"
           aria-labelledby="waitlist-title"
         >
-          <div className="w-full max-w-[980px] md:ml-0 md:mr-auto">
-            <div className="flex flex-col items-start gap-10 md:flex-row md:items-stretch">
-              <div className="w-full md:w-1/2">
-                <div className="h-full rounded-[12px] border border-black/10 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-                  <div className="mb-6 text-left">
-                    <h2
+          <div className="mx-auto flex w-full max-w-[980px] flex-col items-center gap-10 md:flex-row md:items-center md:justify-center">
+            <div className="w-full md:w-1/2">
+              <div className="h-full rounded-[12px] border border-black/10 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+                <div className="mb-6 text-left">
+                  <h2
                     id="waitlist-title"
                     className="text-[28px] font-semibold tracking-tight text-[#1F1F1F]"
                     style={{
@@ -307,17 +369,16 @@ export default function Home() {
                 <WaitlistForm />
               </div>
             </div>
-            <div className="flex w-full items-center justify-center md:w-1/2 md:justify-end">
+            <div className="flex w-full justify-center md:w-1/2">
               <Image
                 src="/wait.png"
                 alt="Illustration of a person waiting to join the Avacado waitlist"
                 width={420}
                 height={420}
-                className="h-auto w-full max-w-[360px] origin-center scale-110 object-contain opacity-95 drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-transform duration-300 md:scale-200"
+                className="h-auto w-full max-w-[360px] origin-center scale-115 object-contain opacity-95 drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-transform duration-300 md:max-w-[420px] md:scale-160"
                 priority
               />
             </div>
-          </div>
           </div>
         </section>
 
