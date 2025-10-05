@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar"
 import { SectionHeader } from "@/components/section-header"
 import { WaitlistForm } from "@/components/waitlist-form"
 import "./pixel-section.css"
+import "./animated-lines-enhanced.css"
 
 export default function Home() {
   const [showOverlay, setShowOverlay] = useState(false)
@@ -34,8 +35,8 @@ export default function Home() {
           }}
         >
           {/* Horizontal Lines */}
-          <div className="absolute inset-x-0 top-16 z-0 h-[1px] w-full bg-black/20 lg:top-24" />
-          <div className="absolute inset-x-0 bottom-16 z-0 h-[1px] w-full bg-black/20 lg:bottom-24" />
+          <div className="animated-horizontal-line line-top absolute inset-x-0 top-16 z-[2] w-full lg:top-24" />
+          <div className="animated-horizontal-line line-bottom absolute inset-x-0 bottom-16 z-[2] w-full lg:bottom-24" />
 
           {/* Vertical Lines */}
           <div className="absolute inset-x-0 top-17 bottom-17 z-0 mx-auto max-w-[1200px] lg:top-24 lg:bottom-24">
