@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { useFormState, useFormStatus } from "react-dom"
+import { useActionState, useEffect, useRef } from "react"
+import { useFormStatus } from "react-dom"
 import { initialWaitlistState, type WaitlistFormState } from "@/app/actions/waitlist-form-state"
 import { submitWaitlistAction } from "@/app/actions/submit-waitlist"
 
@@ -23,7 +23,7 @@ function SubmitButton() {
 }
 
 export function WaitlistForm() {
-  const [state, formAction] = useFormState<WaitlistFormState, FormData>(
+  const [state, formAction] = useActionState<WaitlistFormState, FormData>(
     submitWaitlistAction,
     initialWaitlistState,
   )

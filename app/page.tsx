@@ -246,35 +246,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
             <FeatureCard
               accent="green"
-              tag="IN-LINE COMMENTS & SUGGESTION"
-              title="Context‑aware comments on your PRs"
-              description="In‑line comments to identify bugs, antipatterns, and merge up to 80% faster."
-              imageSrc="/context-aware-code-snippet.jpg"
-              imageAlt="Example in-line code comments"
+              tag="Private, verified, zero compromise."
+              title="Onchain KYC, Reinvented"
+              description="Verify identity once, share zero data — thanks to zero-knowledge proofs."
             />
             <FeatureCard
               accent="orange"
-              tag="CUSTOM CONTEXT"
-              title="Intelligent suggestions that align with your team's coding standards"
-              description="Click‑to‑accept suggestions to fix minor issues in your PR."
-              imageSrc="/suggestion-diff-preview.jpg"
-              imageAlt="Suggestion diff preview"
+              tag="Complete privacy for digital assets."
+              title="Encrypted Token Transactions"
+              description="Send tokens privately using cutting-edge encrypted ERC20 standards."
             />
             <FeatureCard
               accent="yellow"
-              tag="PR SUMMARIES"
-              title="Ship with confidence using intelligent PR analysis"
-              description="Mermaid diagrams, file‑by‑file breakdowns, and confidence scores for every PR."
-              imageSrc="/summary-diagram.jpg"
-              imageAlt="PR summary diagram"
+              tag="Transparency without data exposure."
+              title="Auditor-Ready Privacy Layer"
+              description="Stay compliant while keeping transaction details completely hidden."
             />
             <FeatureCard
               accent="orange"
-              tag="LEARNING"
-              title="Greptile learns as you use it and creates custom context"
-              description="As you interact with Greptile, it learns your team’s standards and applies them to your PRs."
-              imageSrc="/custom-context-form.jpg"
-              imageAlt="Custom context form"
+              tag="One protocol, every blockchain supported."
+              title="Cross-Chain by Design"
+              description="Move assets seamlessly across Celo, Ethereum, and beyond."
             />
           </div>
 

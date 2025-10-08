@@ -23,8 +23,8 @@ export function FeatureCard({
   tag: string
   title: string
   description: string
-  imageSrc: string
-  imageAlt: string
+  imageSrc?: string
+  imageAlt?: string
   className?: string
 }) {
   const color = accentToColor[accent]
@@ -75,16 +75,18 @@ export function FeatureCard({
       {/* Description */}
       <p className="mt-3 text-[12px] md:text-[13px] leading-[1.45] text-muted-foreground max-w-[58ch]">{description}</p>
 
-      {/* Image */}
-      <div className="mt-6 md:mt-8 lg:mt-9">
-        <div className="mx-auto max-w-[420px]">
-          <img
-            src={imageSrc || "/placeholder.svg"}
-            alt={imageAlt}
-            className="w-full rounded-[2px] border border-[color:var(--color-border)]"
-          />
+      {/* Image (optional) */}
+      {imageSrc && (
+        <div className="mt-6 md:mt-8 lg:mt-9">
+          <div className="mx-auto max-w-[420px]">
+            <img
+              src={imageSrc}
+              alt={imageAlt || ""}
+              className="w-full rounded-[2px] border border-[color:var(--color-border)]"
+            />
+          </div>
         </div>
-      </div>
+      )}
     </article>
   )
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import { BookOpen, FileText, Menu } from "lucide-react"
 
 const navItems = [
@@ -17,6 +18,20 @@ const navItems = [
 ]
 
 export function Navbar() {
+  const [toastOpen, setToastOpen] = useState(false)
+
+  // Auto-hide toast after 2.5s
+  useEffect(() => {
+    if (!toastOpen) return
+    const id = setTimeout(() => setToastOpen(false), 2500)
+    return () => clearTimeout(id)
+  }, [toastOpen])
+
+  const handleConnect = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setToastOpen(true)
+  }
+
   return (
     <header
       className="sticky top-0 z-50 border-b border-black/10 bg-[#ECECEC]/90 backdrop-blur transition-colors relative"
@@ -26,6 +41,44 @@ export function Navbar() {
         backgroundSize: "12px 12px",
       }}
     >
+      {/* Toast */}
+      {toastOpen && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="pointer-events-auto absolute right-4 top-4 z-[60] w-[300px] rounded-[2px] border border-[color:var(--color-border)] bg-white/90 backdrop-blur px-4 py-3 shadow-[inset_0_0_0_1px_var(--color-border),0_14px_36px_rgba(0,0,0,0.14)]"
+          style={{ color: "#1F1F1F" }}
+        >
+          <div className="mb-1 flex items-center justify-between">
+            <span
+              className="font-mono text-[10px] uppercase tracking-[0.18em]"
+              style={{ color: "#FF6B6B" }}
+            >
+              [ NOTICE ]
+            </span>
+            <span
+              aria-hidden
+              className="inline-flex h-4 w-4 items-center justify-center rounded-[2px]"
+              style={{ backgroundColor: "#FF6B6B" }}
+            >
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2h6v6" stroke="white" strokeWidth="1" />
+                <path d="M8 2L2 8" stroke="white" strokeWidth="1" />
+              </svg>
+            </span>
+          </div>
+          <p className="text-[12px] leading-[1.45]">slow down there buckaroo, we launch soon</p>
+          <div className="mt-2 h-[3px] w-full overflow-hidden rounded-[1px] bg-black/10">
+            <div className="h-full w-full origin-right bg-[#FF6B6B]" style={{ animation: "toast-progress 2.5s linear forwards" }} />
+          </div>
+          <style jsx>{`
+            @keyframes toast-progress {
+              from { transform: scaleX(1); }
+              to { transform: scaleX(0); }
+            }
+          `}</style>
+        </div>
+      )}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-[1px] bg-black/10" />
         <div className="absolute inset-x-0 bottom-0 h-[1px] bg-black/5" />
@@ -66,12 +119,13 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
-            href="#start"
+          <button
+            type="button"
+            onClick={handleConnect}
             className="group inline-flex h-10 items-center justify-center rounded-[2px] border border-[#FF6B6B] bg-[#FF6B6B] px-6 text-[12px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_10px_30px_rgba(255,107,107,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-transparent hover:text-[#FF6B6B]"
           >
             Connect Wallet
-          </Link>
+          </button>
         </div>
 
         <button

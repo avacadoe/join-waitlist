@@ -11,10 +11,10 @@ export function SectionHeader() {
           {"SHIP FASTER"}
         </div>
         <h2 className="text-[34px] md:text-[40px] lg:text-[44px] leading-[1.05] font-semibold">
-          What we promise
+          Privacy Meets Compliance. Finally, Together.
         </h2>
         <p className="mt-2 font-mono text-[11px] md:text-[12px] text-muted-foreground max-w-[72ch]">
-          What is truly meant by privacy first trading?
+          Transact privately, verify securely, stay fully compliant.
         </p>
       </div>
     </header>
