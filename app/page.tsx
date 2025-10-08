@@ -85,6 +85,7 @@ export default function Home() {
                         backgroundColor: "#FF6B6B",
                         borderColor: "#FF6B6B",
                         color: "#FFFFFF",
+                        transform: "translateY(22px)",
                       }}
                       onMouseEnter={(e) => {
                         const el = e.currentTarget
@@ -128,7 +129,7 @@ export default function Home() {
           <div
             className="absolute left-0 right-0 z-[1] border-t border-black/10 py-4"
             style={{
-              bottom: "-48px",
+              bottom: "-70px",
               backgroundColor: "#ECECEC",
               backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
               backgroundSize: "12px 12px",
