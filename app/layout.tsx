@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "avacado.app",
   description: "avacado - privacy first crypto ",
+  icons: {
+    icon: [
+      { url: "/vercel.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({
