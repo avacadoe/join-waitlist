@@ -97,7 +97,7 @@ export function Navbar() {
                 fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
               }}
             >
-              avacado.xyz
+              avacado.app
             </span>
           </span>
         </Link>
