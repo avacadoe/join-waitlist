@@ -97,7 +97,7 @@ export function Navbar() {
                 fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
               }}
             >
-              avacado.app
+              avacado
             </span>
           </span>
         </Link>
@@ -118,7 +118,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        {/* <div className="hidden items-center gap-3 lg:flex">
           <button
             type="button"
             onClick={handleConnect}
@@ -126,7 +126,7 @@ export function Navbar() {
           >
             Connect Wallet
           </button>
-        </div>
+        </div> */}
 
         <button
           type="button"

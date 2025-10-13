@@ -6,6 +6,7 @@ import { FeatureCard } from "@/components/feature-card"
 import { Navbar } from "@/components/navbar"
 import { SectionHeader } from "@/components/section-header"
 import { WaitlistForm } from "@/components/waitlist-form"
+import { DottedSurface } from "@/components/ui/dotted-surface"
 import "./pixel-section.css"
 import "./animated-lines-enhanced.css"
 
@@ -24,6 +25,7 @@ export default function Home() {
           backgroundSize: "12px 12px",
         }}
       >
+        {/* Background dotted surface removed from global scope */}
         {/* Hero */}
         <section
           className="relative min-h-[75vh] overflow-hidden"
@@ -135,7 +137,7 @@ export default function Home() {
               backgroundSize: "12px 12px",
             }}
           >
-            <div className="mx-auto max-w-[1200px] px-6">
+            {/* <div className="mx-auto max-w-[1200px] px-6">
               <p
                 className="text-center"
                 style={{
@@ -145,8 +147,8 @@ export default function Home() {
                   marginBottom: "12px",
                 }}
               >
-                1000+ TEAMS USE AVACADO TO TRADE PRIVACY FIRST.{" "}
-                <span style={{ color: "#00A667" }}>SEE WHY AVACADO IS A GAME CHANGER→</span>
+                
+                <span style={{ color: "#00A667" }}>EXCLUSIVELY LAUNCHING ON </span>
               </p>
               <div className="mb-4 flex justify-center">
                 <Image
@@ -160,7 +162,7 @@ export default function Home() {
                   }}
                 />
               </div>
-            </div>
+            </div> */}
             <div className="h-px w-full bg-black/10" />
             <div className="mx-auto max-w-[1200px] px-6 pt-4">
               <div className="flex items-center justify-center gap-12">
@@ -217,6 +219,33 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Mid-page intro text (between Hero and Privacy Meets Compliance) */}
+        <section
+          className="relative overflow-hidden mx-auto mt-14 max-w-full px-6"
+          aria-labelledby="mid-intro-text"
+        >
+          {/* Scoped dotted surface background */}
+          <div className="relative z-[1] flex mt-[200px] mb-[100px] items-center justify-center">
+            <div className="w-full text-center">
+              <p
+                id="mid-intro-text"
+                className="mx-auto max-w-[920px] text-[15px] md:text-[17px] lg:text-[22px] leading-relaxed"
+                style={{
+                  color: "#3A3A3A",
+                  fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                }}
+              >
+              Avacado is the first confidential transaction and settlement layer for digital assets, built to deliver privacy, security, and efficiency across chains.
+              By encrypting every transfer and revealing only what is necessary, Avacado enables seamless, regulator-friendly private settlements and cross-chain liquidity without sacrificing transparency or speed.
+              As the most capital-efficient privacy infrastructure, Avacado empowers institutions, market makers, and liquidity providers to operate securely, reduce exposure, and move value discreetly across the multi-chain economy.
+              </p>
+            </div>
+          </div>
+          <span className="relative z-[1] flex mt-[300px] mb-[100px] items-center justify-center">
+          </span>
+          <DottedSurface />
         </section>
 
         {/* Feature section */}
@@ -289,11 +318,11 @@ export default function Home() {
                 color: "#FF8A8A",
               }}
             >
-              Powered by
+              BUILT ON
             </span>
           </div>
           <div className="relative mt-8">
-            <div className="grid grid-cols-3 overflow-hidden rounded-[4px] border border-black/15 bg-[#F5F5F5]">
+            <div className="grid grid-cols-1 overflow-hidden rounded-[4px] border border-black/15 bg-[#F5F5F5]">
               <div className="flex h-24 items-center justify-center border-r border-black/15 bg-[#F0F0F0] md:h-36">
                 <Image
                   src="/avax.png"
@@ -307,6 +336,7 @@ export default function Home() {
                   }}
                 />
               </div>
+              {/*
               <div className="flex h-24 items-center justify-center border-r border-black/15 bg-[#F0F0F0] md:h-36">
                 <Image
                   src="/1inch.png"
@@ -320,6 +350,8 @@ export default function Home() {
                   }}
                 />
               </div>
+              */}
+              {/*
               <div className="flex h-24 items-center justify-center bg-[#F0F0F0] md:h-36">
                 <Image
                   src="/self.png"
@@ -333,6 +365,7 @@ export default function Home() {
                   }}
                 />
               </div>
+              */}
             </div>
           </div>
         </section>
@@ -435,7 +468,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2 sm:gap-10">
+              {/* <div className="grid gap-6 sm:grid-cols-2 sm:gap-10">
                 <div className="space-y-3 sm:space-y-4">
                   <h3
                     className="text-[11px] font-semibold uppercase md:text-xs"
@@ -484,7 +517,7 @@ export default function Home() {
                     <li>Legal</li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="mt-12 flex flex-col gap-4 border-t border-black/10 pt-6 text-[10px] md:mt-16 md:flex-row md:items-center md:justify-between md:text-xs">
@@ -496,7 +529,7 @@ export default function Home() {
                   letterSpacing: "0.32em",
                 }}
               >
-                © {currentYear} Avacado Labs. All rights reserved.
+                © {currentYear} avacado.app. All rights reserved.
               </p>
               <div
                 className="flex flex-wrap items-center gap-3 uppercase md:gap-6"
@@ -506,7 +539,7 @@ export default function Home() {
                   letterSpacing: "0.28em",
                 }}
               >
-                <a href="mailto:hello@avacado.xyz" className="transition-opacity hover:opacity-70">
+                <a href="mailto:arkoroy302@gmail.com" className="transition-opacity hover:opacity-70">
                   Contact
                 </a>
                 <span className="hidden h-[1px] w-12 bg-black/15 md:block" aria-hidden="true" />
