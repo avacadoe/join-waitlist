@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState } from "react";
 import Image from "next/image";
@@ -10,8 +10,8 @@ import "./pixel-section.css";
 import "./animated-lines-enhanced.css";
 
 export default function Home() {
-  const [showOverlay, setShowOverlay] = useState(false);
-  const currentYear = new Date().getFullYear();
+  const [showOverlay, setShowOverlay] = useState(false)
+  const currentYear = new Date().getFullYear()
 
   return (
     <>
@@ -20,8 +20,7 @@ export default function Home() {
         className="min-h-screen"
         style={{
           backgroundColor: "#ECECEC",
-          backgroundImage:
-            "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
           backgroundSize: "12px 12px",
         }}
       >
@@ -32,8 +31,7 @@ export default function Home() {
           style={{
             // subtle dotted background
             backgroundColor: "#ECECEC",
-            backgroundImage:
-              "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
             backgroundSize: "12px 12px",
           }}
         >
@@ -58,8 +56,7 @@ export default function Home() {
                     style={{
                       letterSpacing: "-0.02em",
                       color: "#FF6B6B",
-                      fontFamily:
-                        "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                      fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                     }}
                   >
                     The Privacy Wallet
@@ -72,8 +69,7 @@ export default function Home() {
                     className="mt-8 space-y-2 text-[14px] font-semibold uppercase tracking-[0.08em]"
                     style={{
                       color: "#FF6B6B",
-                      fontFamily:
-                        "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                     }}
                   >
                     <p>PRIVACY FIRST TRADING</p>
@@ -93,14 +89,14 @@ export default function Home() {
                         transform: "translateY(22px)",
                       }}
                       onMouseEnter={(e) => {
-                        const el = e.currentTarget;
-                        el.style.backgroundColor = "transparent";
-                        el.style.color = "#FF6B6B";
+                        const el = e.currentTarget
+                        el.style.backgroundColor = "transparent"
+                        el.style.color = "#FF6B6B"
                       }}
                       onMouseLeave={(e) => {
-                        const el = e.currentTarget;
-                        el.style.backgroundColor = "#FF6B6B";
-                        el.style.color = "#FFFFFF";
+                        const el = e.currentTarget
+                        el.style.backgroundColor = "#FF6B6B"
+                        el.style.color = "#FFFFFF"
                       }}
                     >
                       Join Waitlist →
@@ -136,8 +132,7 @@ export default function Home() {
             style={{
               bottom: "-70px",
               backgroundColor: "#ECECEC",
-              backgroundImage:
-                "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+              backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
               backgroundSize: "12px 12px",
             }}
           >
@@ -175,8 +170,7 @@ export default function Home() {
                   style={{
                     color: "#AAAAAA",
                     fontSize: "20px",
-                    fontFamily:
-                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
                   base
@@ -186,8 +180,7 @@ export default function Home() {
                   style={{
                     color: "#AAAAAA",
                     fontSize: "20px",
-                    fontFamily:
-                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
                   avalanche
@@ -197,8 +190,7 @@ export default function Home() {
                   style={{
                     color: "#AAAAAA",
                     fontSize: "20px",
-                    fontFamily:
-                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
                   eth
@@ -208,8 +200,7 @@ export default function Home() {
                   style={{
                     color: "#AAAAAA",
                     fontSize: "20px",
-                    fontFamily:
-                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
                   1inch
@@ -219,10 +210,11 @@ export default function Home() {
                   style={{
                     color: "#AAAAAA",
                     fontSize: "20px",
-                    fontFamily:
-                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
-                ></span>
+                >
+                  hedera
+                </span>
               </div>
             </div>
           </div>
@@ -230,27 +222,23 @@ export default function Home() {
 
         {/* Mid-page intro text (between Hero and Privacy Meets Compliance) */}
         <section
-          className="relative overflow-hidden mx-auto mt-8 max-w-full px-6"
+          className="relative overflow-hidden mx-auto mt-14 max-w-full px-6"
           aria-labelledby="mid-intro-text"
         >
           {/* Scoped dotted surface background */}
-          <div className="relative z-[1] flex mt-[40px] mb-[40px] items-center justify-center">
+          <div className="relative z-[1] flex mt-[200px] mb-[100px] items-center justify-center">
             <div className="w-full text-center">
               <p
                 id="mid-intro-text"
                 className="mx-auto max-w-[920px] text-[15px] md:text-[17px] lg:text-[22px] leading-relaxed"
                 style={{
                   color: "#3A3A3A",
-                  fontFamily:
-                    "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                  fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                 }}
               >
-                Avacado provides cryptographic transaction unlinking, enabling
-                institutions to transact with complete confidentiality while
-                maintaining regulatory transparency. Our selective disclosure
-                protocol ensures financial privacy through advanced encryption,
-                revealing transaction details only to authorized compliance
-                frameworks when required.
+              Avacado is the first confidential transaction and settlement layer for digital assets, built to deliver privacy, security, and efficiency across chains.
+              By encrypting every transfer and revealing only what is necessary, Avacado enables seamless, regulator-friendly private settlements and cross-chain liquidity without sacrificing transparency or speed.
+              As the most capital-efficient privacy infrastructure, Avacado empowers institutions, market makers, and liquidity providers to operate securely, reduce exposure, and move value discreetly across the multi-chain economy.
               </p>
             </div>
           </div>
@@ -262,33 +250,30 @@ export default function Home() {
           aria-labelledby="greptile-section-title"
           style={{
             backgroundColor: "#ECECEC",
-            backgroundImage:
-              "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
             backgroundSize: "12px 12px",
           }}
         >
           {/* Overlay toggle for pixel matching */}
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <button
               type="button"
               onClick={() => setShowOverlay((v) => !v)}
               className="rounded-[2px] border border-[color:var(--color-border)] bg-card px-2.5 py-1.5 text-[11px] font-mono tracking-wide text-foreground"
               aria-pressed={showOverlay}
             >
-              {showOverlay ? "Hide" : "Show"} overlay
+              {showOverlay ? "Hide" : "Show"} reference overlay
             </button>
-            <span className="sr-only">
-              Toggles an overlay of the provided screenshot for alignment.
-            </span>
-          </div> */}
+            <span className="sr-only">Toggles an overlay of the provided screenshot for alignment.</span>
+          </div>
 
           <SectionHeader />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
             <FeatureCard
               accent="green"
-              tag="Compliance, redefined."
-              title="Privacy, Reinvented"
+              tag="Private, verified, zero compromise."
+              title="Onchain KYC, Reinvented"
               description="Verify identity once, share zero data — thanks to zero-knowledge proofs."
             />
             <FeatureCard
@@ -305,9 +290,9 @@ export default function Home() {
             />
             <FeatureCard
               accent="orange"
-              tag="One protocol,to rule them all"
-              title="Interoperability by Design"
-              description="Convert every ERC20 token to its private counterpart and back, seamlessly."
+              tag="One protocol, every blockchain supported."
+              title="Cross-Chain by Design"
+              description="Move assets seamlessly across Celo, Ethereum, and beyond."
             />
           </div>
 
@@ -394,15 +379,14 @@ export default function Home() {
                     id="waitlist-title"
                     className="text-[28px] font-semibold tracking-tight text-[#1F1F1F]"
                     style={{
-                      fontFamily:
-                        "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                      fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                       letterSpacing: "-0.01em",
                     }}
                   >
-                    Secure your spot for Avacado
+                    Secure your spot for Avacado 
                   </h2>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    We'll reach out once the privacy wallet is ready.
+                    We'll reach out once the privacy wallet is ready. 
                   </p>
                 </div>
                 <WaitlistForm />
@@ -426,20 +410,15 @@ export default function Home() {
           aria-labelledby="footer-title"
           style={{
             backgroundColor: "#ECECEC",
-            backgroundImage:
-              "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
             backgroundSize: "12px 12px",
           }}
         >
-          <div
-            className="pointer-events-none absolute inset-0"
-            aria-hidden="true"
-          >
+          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
             <div
               className="absolute left-1/2 top-12 h-[260px] w-[260px] -translate-x-1/2 rounded-full md:h-[360px] md:w-[360px] lg:h-[420px] lg:w-[420px]"
               style={{
-                background:
-                  "radial-gradient(circle, rgba(255,107,107,0.18) 0%, rgba(255,107,107,0) 65%)",
+                background: "radial-gradient(circle, rgba(255,107,107,0.18) 0%, rgba(255,107,107,0) 65%)",
               }}
             />
             <div className="absolute inset-x-0 bottom-0 h-[1px] bg-black/10" />
@@ -453,8 +432,7 @@ export default function Home() {
                   className="mb-6 text-[10px] uppercase md:text-xs"
                   style={{
                     color: "#FF6B6B",
-                    fontFamily:
-                      "JetBrains Mono, Monaco, 'Courier New', monospace",
+                    fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                     letterSpacing: "0.4em",
                   }}
                 >
@@ -463,8 +441,7 @@ export default function Home() {
                 <h2
                   id="footer-title"
                   style={{
-                    fontFamily:
-                      "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                     fontSize: "clamp(64px, 18vw, 200px)",
                     fontWeight: 700,
                     lineHeight: 0.88,
@@ -480,12 +457,10 @@ export default function Home() {
                   className="mt-6 max-w-[560px] text-xs leading-relaxed md:text-sm"
                   style={{
                     color: "#555555",
-                    fontFamily:
-                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
-                  Built for teams that expect complete privacy, zero-knowledge
-                  compliance, and lightning-fast execution across chains.
+                  Built for teams that expect complete privacy, zero-knowledge compliance, and lightning-fast execution across chains.
                 </p>
               </div>
 
@@ -545,8 +520,7 @@ export default function Home() {
               <p
                 className="uppercase"
                 style={{
-                  fontFamily:
-                    "JetBrains Mono, Monaco, 'Courier New', monospace",
+                  fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                   color: "#7A7A7A",
                   letterSpacing: "0.32em",
                 }}
@@ -556,32 +530,19 @@ export default function Home() {
               <div
                 className="flex flex-wrap items-center gap-3 uppercase md:gap-6"
                 style={{
-                  fontFamily:
-                    "JetBrains Mono, Monaco, 'Courier New', monospace",
+                  fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
                   color: "#7A7A7A",
                   letterSpacing: "0.28em",
                 }}
               >
-                <a
-                  href="mailto:arkoroy302@gmail.com"
-                  className="transition-opacity hover:opacity-70"
-                >
+                <a href="mailto:arkoroy302@gmail.com" className="transition-opacity hover:opacity-70">
                   Contact
                 </a>
-                <span
-                  className="hidden h-[1px] w-12 bg-black/15 md:block"
-                  aria-hidden="true"
-                />
-                <a
-                  href="#waitlist"
-                  className="transition-opacity hover:opacity-70"
-                >
+                <span className="hidden h-[1px] w-12 bg-black/15 md:block" aria-hidden="true" />
+                <a href="#waitlist" className="transition-opacity hover:opacity-70">
                   Join Waitlist
                 </a>
-                <span
-                  className="hidden h-[1px] w-12 bg-black/15 md:block"
-                  aria-hidden="true"
-                />
+                <span className="hidden h-[1px] w-12 bg-black/15 md:block" aria-hidden="true" />
                 <a href="/" className="transition-opacity hover:opacity-70">
                   Privacy
                 </a>
@@ -591,5 +552,5 @@ export default function Home() {
         </footer>
       </main>
     </>
-  );
+  )
 }
