@@ -291,12 +291,12 @@ export default function Home() {
               title="Auditor-Ready Privacy Layer"
               description="Stay compliant while keeping transaction details completely hidden."
             />
-            <FeatureCard
+            {/* <FeatureCard
               accent="orange"
               tag="One protocol, every blockchain supported."
               title="Cross-Chain by Design"
               description="Move assets seamlessly across Celo, Ethereum, and beyond."
-            />
+            /> */}
           </div>
 
           {showOverlay && <div className="ref-overlay" aria-hidden="true" />}
