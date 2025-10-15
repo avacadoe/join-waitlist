@@ -236,9 +236,12 @@ export default function Home() {
                   fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                 }}
               >
-              Avacado is the first confidential transaction and settlement layer for digital assets, built to deliver privacy, security, and efficiency across chains.
-              By encrypting every transfer and revealing only what is necessary, Avacado enables seamless, regulator-friendly private settlements and cross-chain liquidity without sacrificing transparency or speed.
-              As the most capital-efficient privacy infrastructure, Avacado empowers institutions, market makers, and liquidity providers to operate securely, reduce exposure, and move value discreetly across the multi-chain economy.
+               Avacado provides cryptographic transaction unlinking, enabling
+                institutions to transact with complete confidentiality while
+                maintaining regulatory transparency. Our selective disclosure
+                protocol ensures financial privacy through advanced encryption,
+                revealing transaction details only to authorized compliance
+                frameworks when required.
               </p>
             </div>
           </div>
@@ -270,11 +273,11 @@ export default function Home() {
           <SectionHeader />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
-            <FeatureCard
-              accent="green"
-              tag="Private, verified, zero compromise."
-              title="Onchain KYC, Reinvented"
-              description="Verify identity once, share zero data — thanks to zero-knowledge proofs."
+          <FeatureCard
+              accent="orange"
+              tag="One protocol,to rule them all"
+              title="Interoperability by Design"
+              description="Convert every ERC20 token to its private counterpart and back, seamlessly."
             />
             <FeatureCard
               accent="orange"
