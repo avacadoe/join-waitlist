@@ -272,7 +272,7 @@ export default function Home() {
 
           <SectionHeader />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4 md:gap-5 lg:gap-6">
           <FeatureCard
               accent="orange"
               tag="One protocol,to rule them all"
@@ -280,9 +280,10 @@ export default function Home() {
               description="Convert every ERC20 token to its private counterpart and back, seamlessly."
             />
             <FeatureCard
+              className="md:row-span-2"
               accent="orange"
-              tag="Complete privacy for digital assets."
-              title="Encrypted Token Transactions"
+              tag="Finally, Together."
+              title="Transact privately, verify securely, stay fully compliant."
               description="Send tokens privately using cutting-edge encrypted ERC20 standards."
             />
             <FeatureCard
