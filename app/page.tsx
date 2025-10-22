@@ -6,7 +6,6 @@ import { FeatureCard } from "@/components/feature-card";
 import { Navbar } from "@/components/navbar";
 import { SectionHeader } from "@/components/section-header";
 import { WaitlistForm } from "@/components/waitlist-form";
-import { DottedSurface } from "@/components/ui/dotted-surface";
 import "./pixel-section.css";
 import "./animated-lines-enhanced.css";
 
