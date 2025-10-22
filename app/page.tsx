@@ -254,9 +254,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="relative z-[0] mt-[60px] mb-[60px]">
-            <DottedSurface />
-          </div>
         </section>
 
         {/* Feature section */}
