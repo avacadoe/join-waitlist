@@ -68,7 +68,7 @@ export function WaitlistCounter() {
               letterSpacing: '-0.02em',
             }}
           >
-            {isLoading ? '...' : count.toLocaleString()+"+"}
+            {isLoading ? '...' : (count + 40).toLocaleString() + "+"}
           </div>
           <div
             className="mt-1 text-xs uppercase tracking-widest"
