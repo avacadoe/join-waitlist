@@ -6,6 +6,7 @@ import { FeatureCard } from "@/components/feature-card";
 import { Navbar } from "@/components/navbar";
 import { SectionHeader } from "@/components/section-header";
 import { WaitlistForm } from "@/components/waitlist-form";
+import { WaitlistCounter } from "@/components/waitlist-counter";
 import "./pixel-section.css";
 import "./animated-lines-enhanced.css";
 
@@ -400,6 +401,9 @@ export default function Home() {
                     }}
                   >
                     Secure your spot for Avacado
+                    <div className="mt-6">
+                <WaitlistCounter />
+              </div>
                   </h2>
                   <p className="mt-2 text-sm text-muted-foreground">
                     We'll reach out once the privacy wallet is ready.
@@ -407,6 +411,7 @@ export default function Home() {
                 </div>
                 <WaitlistForm />
               </div>
+            
             </div>
             <div className="flex w-full justify-center md:w-1/2">
               <Image
