@@ -1,22 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import Lenis from "lenis";
 import { FeatureCard } from "@/components/feature-card";
 import { Navbar } from "@/components/navbar";
 import { SectionHeader } from "@/components/section-header";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { WaitlistCounter } from "@/components/waitlist-counter";
+import { SakuraParticles } from "@/components/sakura-particles";
 import "./pixel-section.css";
 import "./animated-lines-enhanced.css";
 
 export default function Home() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   const [showOverlay, setShowOverlay] = useState(false);
   const currentYear = new Date().getFullYear();
 
   return (
     <>
       <Navbar />
+      <SakuraParticles />
       <main
         className="min-h-screen"
         style={{
@@ -113,6 +135,7 @@ export default function Home() {
               {/* Right image */}
               <div className="relative flex min-h-[70vh] items-center justify-center">
                 <div className="relative h-full w-full">
+
                   <Image
                     src="/avocado.png"
                     alt="Large grayscale avocado illustration on the right"
@@ -126,6 +149,7 @@ export default function Home() {
                       transform: "translateY(24px)", // push it large like the screenshot and nudge further downward
                     }}
                   />
+
                 </div>
               </div>
             </div>
@@ -402,8 +426,8 @@ export default function Home() {
                   >
                     Secure your spot for Avacado
                     <div className="mt-6">
-                <WaitlistCounter />
-              </div>
+                      <WaitlistCounter />
+                    </div>
                   </h2>
                   <p className="mt-2 text-sm text-muted-foreground">
                     We'll reach out once the privacy wallet is ready.
@@ -411,7 +435,7 @@ export default function Home() {
                 </div>
                 <WaitlistForm />
               </div>
-            
+
             </div>
             <div className="flex w-full justify-center md:w-1/2">
               <Image
