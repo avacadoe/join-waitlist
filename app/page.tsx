@@ -3,14 +3,29 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Lenis from "lenis";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { FeatureCard } from "@/components/feature-card";
 import { Navbar } from "@/components/navbar";
 import { SectionHeader } from "@/components/section-header";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { WaitlistCounter } from "@/components/waitlist-counter";
 import { SakuraParticles } from "@/components/sakura-particles";
+import {
+  TextReveal,
+  ScrollTextFill,
+  SlideIn,
+  FadeIn,
+  FadeInScale,
+  StaggerContainer,
+  staggerItemVariants,
+  Parallax,
+  ScrollProgressLine,
+} from "@/components/scroll-animations";
 import "./pixel-section.css";
 import "./animated-lines-enhanced.css";
+
+// Custom cubic-bezier easing similar to AVAX/Polygon
+const customEase = [0.22, 1, 0.36, 1] as const;
 
 export default function Home() {
   useEffect(() => {
@@ -37,6 +52,7 @@ export default function Home() {
 
   return (
     <>
+      <ScrollProgressLine />
       <Navbar />
       <SakuraParticles />
       <main
@@ -76,6 +92,7 @@ export default function Home() {
               {/* Left */}
               <div className="relative top-6 flex flex-col justify-between px-2 pt-4 lg:top-10 lg:px-4">
                 <div>
+                  {/* Animated hero title - AVAX style character reveal */}
                   <h1
                     className="text-balance font-bold leading-[1.02] text-[48px] sm:text-[64px] lg:text-[96px]"
                     style={{
@@ -85,27 +102,47 @@ export default function Home() {
                         "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                     }}
                   >
-                    The Privacy Wallet
+                    <TextReveal>The Privacy Wallet</TextReveal>
                     <br />
-                    For Your Crypto
+                    <TextReveal>For Your Crypto</TextReveal>
                   </h1>
 
-                  {/* Feature bullets */}
-                  <div
+                  {/* Feature bullets - staggered slide in */}
+                  <StaggerContainer
                     className="mt-8 space-y-2 text-[14px] font-semibold uppercase tracking-[0.08em]"
-                    style={{
-                      color: "#FF6B6B",
-                      fontFamily:
-                        "JetBrains Mono, Monaco, 'Courier New', monospace",
-                    }}
+                    staggerDelay={0.15}
                   >
-                    <p>PRIVACY FIRST TRADING</p>
-                    <p>100% ANONYMOUS</p>
-                    <p>COMPLIANCE FRIENDLY</p>
-                  </div>
+                    <motion.p
+                      variants={staggerItemVariants}
+                      style={{
+                        color: "#FF6B6B",
+                        fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      }}
+                    >
+                      PRIVACY FIRST TRADING
+                    </motion.p>
+                    <motion.p
+                      variants={staggerItemVariants}
+                      style={{
+                        color: "#FF6B6B",
+                        fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      }}
+                    >
+                      100% ANONYMOUS
+                    </motion.p>
+                    <motion.p
+                      variants={staggerItemVariants}
+                      style={{
+                        color: "#FF6B6B",
+                        fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      }}
+                    >
+                      COMPLIANCE FRIENDLY
+                    </motion.p>
+                  </StaggerContainer>
 
-                  {/* CTA */}
-                  <div>
+                  {/* CTA - slide in from left */}
+                  <SlideIn direction="left" delay={0.5}>
                     <a
                       href="#waitlist"
                       className="inline-flex h-10 items-center justify-center rounded-md border px-6 text-sm font-semibold transition-colors"
@@ -128,30 +165,29 @@ export default function Home() {
                     >
                       Join Waitlist →
                     </a>
+                  </SlideIn>
+                </div>
+              </div>
+
+              {/* Right image - with parallax effect */}
+              <Parallax speed={-0.2} className="relative flex min-h-[70vh] items-center justify-center">
+                <FadeInScale delay={0.3}>
+                  <div className="relative h-full w-full">
+                    <Image
+                      src="/avocado.png"
+                      alt="Large grayscale avocado illustration on the right"
+                      width={1200}
+                      height={1200}
+                      priority
+                      className="h-[70vh] w-full object-contain"
+                      style={{
+                        filter: "sharpness(1.15) contrast(1.15) saturate(0.75)",
+                        transform: "translateY(24px)",
+                      }}
+                    />
                   </div>
-                </div>
-              </div>
-
-              {/* Right image */}
-              <div className="relative flex min-h-[70vh] items-center justify-center">
-                <div className="relative h-full w-full">
-
-                  <Image
-                    src="/avocado.png"
-                    alt="Large grayscale avocado illustration on the right"
-                    width={1200}
-                    height={1200}
-                    priority
-                    className="h-[70vh] w-full object-contain"
-                    style={{
-                      // approximate halftone look with grayscale + contrast and a touch of desaturation
-                      filter: "sharpness(1.15) contrast(1.15) saturate(0.75)",
-                      transform: "translateY(24px)", // push it large like the screenshot and nudge further downward
-                    }}
-                  />
-
-                </div>
-              </div>
+                </FadeInScale>
+              </Parallax>
             </div>
           </div>
 
@@ -253,30 +289,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Mid-page intro text (between Hero and Privacy Meets Compliance) */}
+        {/* Mid-page intro text - Polygon-style scroll text fill */}
         <section
           className="relative overflow-hidden mx-auto mt-8 max-w-full px-6"
           aria-labelledby="mid-intro-text"
         >
-          {/* Scoped dotted surface background */}
           <div className="relative z-[1] flex mt-[40px] mb-[40px] items-center justify-center">
             <div className="w-full text-center">
-              <p
-                id="mid-intro-text"
-                className="mx-auto max-w-[920px] text-[15px] md:text-[17px] lg:text-[22px] leading-relaxed"
-                style={{
-                  color: "#3A3A3A",
-                  fontFamily:
-                    "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                }}
+              <ScrollTextFill
+                className="mx-auto max-w-[920px] text-[15px] md:text-[17px] lg:text-[22px] leading-relaxed font-medium"
+                baseColor="rgba(58, 58, 58, 0.25)"
+                fillColor="#3A3A3A"
               >
-                Avacado provides cryptographic transaction unlinking, enabling
-                institutions to transact with complete confidentiality while
-                maintaining regulatory transparency. Our selective disclosure
-                protocol ensures financial privacy through advanced encryption,
-                revealing transaction details only to authorized compliance
-                frameworks when required.
-              </p>
+                Avacado provides cryptographic transaction unlinking, enabling institutions to transact with complete confidentiality while maintaining regulatory transparency. Our selective disclosure protocol ensures financial privacy through advanced encryption, revealing transaction details only to authorized compliance frameworks when required.
+              </ScrollTextFill>
             </div>
           </div>
         </section>
@@ -310,30 +336,42 @@ export default function Home() {
           <SectionHeader />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
-            <FeatureCard
-              accent="green"
-              tag="Compliance, redefined."
-              title="Privacy, Reinvented"
-              description="Verify identity once, share zero data — thanks to zero-knowledge proofs."
-            />
-            <FeatureCard
-              accent="orange"
-              tag="Complete privacy for digital assets."
-              title="Encrypted Token Transactions"
-              description="Send tokens privately using cutting-edge encrypted ERC20 standards."
-            />
-            <FeatureCard
-              accent="yellow"
-              tag="Transparency without data exposure."
-              title="Auditor-Ready Privacy Layer"
-              description="Stay compliant while keeping transaction details completely hidden."
-            />
-            <FeatureCard
-              accent="orange"
-              tag="One protocol,to rule them all"
-              title="Interoperability by Design"
-              description="Convert every ERC20 token to its private counterpart and back, seamlessly."
-            />
+            {/* Card 1 - slide from left */}
+            <SlideIn direction="left" delay={0}>
+              <FeatureCard
+                accent="green"
+                tag="Compliance, redefined."
+                title="Privacy, Reinvented"
+                description="Verify identity once, share zero data — thanks to zero-knowledge proofs."
+              />
+            </SlideIn>
+            {/* Card 2 - slide from right */}
+            <SlideIn direction="right" delay={0.1}>
+              <FeatureCard
+                accent="orange"
+                tag="Complete privacy for digital assets."
+                title="Encrypted Token Transactions"
+                description="Send tokens privately using cutting-edge encrypted ERC20 standards."
+              />
+            </SlideIn>
+            {/* Card 3 - slide from left */}
+            <SlideIn direction="left" delay={0.2}>
+              <FeatureCard
+                accent="yellow"
+                tag="Transparency without data exposure."
+                title="Auditor-Ready Privacy Layer"
+                description="Stay compliant while keeping transaction details completely hidden."
+              />
+            </SlideIn>
+            {/* Card 4 - slide from right */}
+            <SlideIn direction="right" delay={0.3}>
+              <FeatureCard
+                accent="orange"
+                tag="One protocol,to rule them all"
+                title="Interoperability by Design"
+                description="Convert every ERC20 token to its private counterpart and back, seamlessly."
+              />
+            </SlideIn>
           </div>
 
           {showOverlay && <div className="ref-overlay" aria-hidden="true" />}
@@ -412,7 +450,8 @@ export default function Home() {
           aria-labelledby="waitlist-title"
         >
           <div className="mx-auto flex w-full max-w-[980px] flex-col items-center gap-10 md:flex-row md:items-center md:justify-center">
-            <div className="w-full md:w-1/2">
+            {/* Form - slide from left */}
+            <SlideIn direction="left" className="w-full md:w-1/2">
               <div className="h-full rounded-[12px] border border-black/10 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
                 <div className="mb-6 text-left">
                   <h2
@@ -424,7 +463,7 @@ export default function Home() {
                       letterSpacing: "-0.01em",
                     }}
                   >
-                    Secure your spot for Avacado
+                    <TextReveal>Secure your spot for Avacado</TextReveal>
                     <div className="mt-6">
                       <WaitlistCounter />
                     </div>
@@ -435,18 +474,21 @@ export default function Home() {
                 </div>
                 <WaitlistForm />
               </div>
+            </SlideIn>
 
-            </div>
-            <div className="flex w-full justify-center md:w-1/2">
-              <Image
-                src="/wait.png"
-                alt="Illustration of a person waiting to join the Avacado waitlist"
-                width={420}
-                height={420}
-                className="h-auto w-full max-w-[360px] origin-center scale-115 object-contain opacity-95 drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-transform duration-300 md:max-w-[420px] md:scale-160"
-                priority
-              />
-            </div>
+            {/* Image - slide from right with parallax */}
+            <Parallax speed={0.15} className="flex w-full justify-center md:w-1/2">
+              <FadeInScale delay={0.2}>
+                <Image
+                  src="/wait.png"
+                  alt="Illustration of a person waiting to join the Avacado waitlist"
+                  width={420}
+                  height={420}
+                  className="h-auto w-full max-w-[360px] origin-center scale-115 object-contain opacity-95 drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-transform duration-300 md:max-w-[420px] md:scale-160"
+                  priority
+                />
+              </FadeInScale>
+            </Parallax>
           </div>
         </section>
 
@@ -478,44 +520,50 @@ export default function Home() {
           <div className="relative z-[1] mx-auto max-w-[1200px] px-6 py-12 md:py-16 lg:px-16 lg:py-24">
             <div className="grid gap-10 md:gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
               <div>
-                <p
-                  className="mb-6 text-[10px] uppercase md:text-xs"
-                  style={{
-                    color: "#FF6B6B",
-                    fontFamily:
-                      "JetBrains Mono, Monaco, 'Courier New', monospace",
-                    letterSpacing: "0.4em",
-                  }}
-                >
-                  Privacy-first wallet
-                </p>
-                <h2
-                  id="footer-title"
-                  style={{
-                    fontFamily:
-                      "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                    fontSize: "clamp(64px, 18vw, 200px)",
-                    fontWeight: 700,
-                    lineHeight: 0.88,
-                    letterSpacing: "-0.08em",
-                    textTransform: "uppercase",
-                    color: "#FF6B6B",
-                    textShadow: "0 24px 60px rgba(255, 107, 107, 0.35)",
-                  }}
-                >
-                  Avacado
-                </h2>
-                <p
-                  className="mt-6 max-w-[560px] text-xs leading-relaxed md:text-sm"
-                  style={{
-                    color: "#555555",
-                    fontFamily:
-                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                  }}
-                >
-                  Built for teams that expect complete privacy, zero-knowledge
-                  compliance, and lightning-fast execution across chains.
-                </p>
+                <SlideIn direction="up" delay={0}>
+                  <p
+                    className="mb-6 text-[10px] uppercase md:text-xs"
+                    style={{
+                      color: "#FF6B6B",
+                      fontFamily:
+                        "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      letterSpacing: "0.4em",
+                    }}
+                  >
+                    Privacy-first wallet
+                  </p>
+                </SlideIn>
+                <SlideIn direction="up" delay={0.1}>
+                  <h2
+                    id="footer-title"
+                    style={{
+                      fontFamily:
+                        "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                      fontSize: "clamp(64px, 18vw, 200px)",
+                      fontWeight: 700,
+                      lineHeight: 0.88,
+                      letterSpacing: "-0.08em",
+                      textTransform: "uppercase",
+                      color: "#FF6B6B",
+                      textShadow: "0 24px 60px rgba(255, 107, 107, 0.35)",
+                    }}
+                  >
+                    Avacado
+                  </h2>
+                </SlideIn>
+                <SlideIn direction="up" delay={0.2}>
+                  <p
+                    className="mt-6 max-w-[560px] text-xs leading-relaxed md:text-sm"
+                    style={{
+                      color: "#555555",
+                      fontFamily:
+                        "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    }}
+                  >
+                    Built for teams that expect complete privacy, zero-knowledge
+                    compliance, and lightning-fast execution across chains.
+                  </p>
+                </SlideIn>
               </div>
 
               {/* <div className="grid gap-6 sm:grid-cols-2 sm:gap-10">
