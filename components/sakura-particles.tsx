@@ -46,39 +46,23 @@ export function SakuraParticles() {
             });
         }
 
-        let lastScrollY = window.scrollY;
-        let isScrolling = false;
-        let scrollTimeout: NodeJS.Timeout;
-
-        const onScroll = () => {
-            isScrolling = true;
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                isScrolling = false;
-            }, 50); // "Instant" stop (approx 3 frames)
-        };
-
-        window.addEventListener("scroll", onScroll);
-
         const render = () => {
             ctx.clearRect(0, 0, width, height);
 
-            // Update and draw particles
+            // Update and draw particles - constant falling animation
             particles.forEach((p) => {
-                if (isScrolling) {
-                    p.y += p.speed;
-                    p.x += Math.sin(p.swayOffset) * p.sway;
-                    p.swayOffset += 0.02;
-                    p.rotation += p.rotationSpeed;
+                p.y += p.speed;
+                p.x += Math.sin(p.swayOffset) * p.sway;
+                p.swayOffset += 0.02;
+                p.rotation += p.rotationSpeed;
 
-                    // Wrap around if out of view
-                    if (p.y > height) {
-                        p.y = -20;
-                        p.x = Math.random() * width;
-                    }
-                    if (p.x > width) p.x = 0;
-                    if (p.x < 0) p.x = width;
+                // Wrap around if out of view
+                if (p.y > height) {
+                    p.y = -20;
+                    p.x = Math.random() * width;
                 }
+                if (p.x > width) p.x = 0;
+                if (p.x < 0) p.x = width;
 
                 // Draw petal (ellipse)
                 ctx.fillStyle = p.color;
@@ -109,10 +93,8 @@ export function SakuraParticles() {
         handleResize(); // Initial size
 
         return () => {
-            window.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", handleResize);
             cancelAnimationFrame(animationId);
-            clearTimeout(scrollTimeout);
         };
     }, []);
 
