@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { BookOpen, FileText, Menu } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { BookOpen, FileText, Menu, Home } from "lucide-react"
 
 const navItems = [
   {
@@ -11,7 +12,7 @@ const navItems = [
     icon: FileText,
   },
   {
-    href: "#docs",
+    href: "/docs",
     label: "Docs",
     icon: BookOpen,
   },
@@ -19,6 +20,29 @@ const navItems = [
 
 export function Navbar() {
   const [toastOpen, setToastOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Get navigation items based on current page
+  const getNavItems = () => {
+    if (pathname === '/docs') {
+      return [
+        {
+          href: "#blog",
+          label: "Blog",
+          icon: FileText,
+        },
+        {
+          href: "/",
+          label: "Home",
+          icon: Home,
+        },
+      ]
+    }
+    return navItems
+  }
+
+  const currentNavItems = getNavItems()
 
   // Auto-hide toast after 2.5s
   useEffect(() => {
@@ -103,7 +127,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
-          {navItems.map(({ href, label, icon: Icon }) => (
+          {currentNavItems.map(({ href, label, icon: Icon }) => (
             <Link
               key={label}
               href={href}
@@ -129,13 +153,64 @@ export function Navbar() {
         </div> */}
 
         <button
-          type="button"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-all duration-200 hover:border-[#FF6B6B] hover:text-[#FF6B6B] lg:hidden"
         >
-          <Menu className="h-5 w-5" aria-hidden="true" />
-          <span className="sr-only">Open navigation</span>
+          {mobileMenuOpen ? (
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <Menu className="h-5 w-5" aria-hidden="true" />
+          )}
+          <span className="sr-only">{mobileMenuOpen ? 'Close navigation' : 'Open navigation'}</span>
         </button>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      <div 
+        className={`fixed top-[68px] left-0 right-0 bg-white z-50 shadow-2xl lg:hidden border-b border-black/10 transition-all duration-300 ease-in-out ${
+          mobileMenuOpen 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}
+        style={{
+          backgroundColor: "#ECECEC",
+          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+          backgroundSize: "12px 12px",
+        }}
+      >
+        <div className="max-h-[calc(100vh-68px)] overflow-y-auto">
+          {/* Navigation Items */}
+          <nav className="p-6">
+            <div className="space-y-2">
+              {currentNavItems.map(({ href, label, icon: Icon }, index) => (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 text-[14px] text-[#3A3A3A] bg-white/70 hover:bg-white rounded-[2px] transition-all duration-200 border border-black/10"
+                  style={{
+                    transitionDelay: mobileMenuOpen ? `${index * 50}ms` : '0ms'
+                  }}
+                >
+                  <Icon className="h-4 w-4 text-[#FF6B6B]" />
+                  <span className="font-medium">{label}</span>
+                </Link>
+              ))}
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      {/* Backdrop */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+          style={{ top: '68px' }}
+        />
+      )}
     </header>
   )
 }
