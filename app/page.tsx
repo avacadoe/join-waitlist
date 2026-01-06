@@ -9,7 +9,6 @@ import { Navbar } from "@/components/navbar";
 import { SectionHeader } from "@/components/section-header";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { WaitlistCounter } from "@/components/waitlist-counter";
-import { SakuraParticles } from "@/components/sakura-particles";
 import {
   TextReveal,
   ScrollTextFill,
@@ -54,7 +53,6 @@ export default function Home() {
     <>
       <ScrollProgressLine />
       <Navbar />
-      <SakuraParticles />
       <main
         className="min-h-screen"
         style={{

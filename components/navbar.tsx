@@ -2,23 +2,42 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { BookOpen, FileText, Menu } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { BookOpen, FileText, Menu, X, Home } from "lucide-react"
 
 const navItems = [
+  {
+    href: "/docs",
+    label: "Docs",
+    icon: BookOpen,
+  },
   {
     href: "#blog",
     label: "Blog",
     icon: FileText,
   },
+]
+
+const docsNavItems = [
   {
-    href: "#docs",
-    label: "Docs",
-    icon: BookOpen,
+    href: "/",
+    label: "Home",
+    icon: Home,
+  },
+  {
+    href: "#blog",
+    label: "Blog",
+    icon: FileText,
   },
 ]
 
 export function Navbar() {
   const [toastOpen, setToastOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+  
+  // Use different nav items based on current page
+  const currentNavItems = pathname === '/docs' ? docsNavItems : navItems
 
   // Auto-hide toast after 2.5s
   useEffect(() => {
@@ -27,9 +46,34 @@ export function Navbar() {
     return () => clearTimeout(id)
   }, [toastOpen])
 
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false)
+    }
+    if (mobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [mobileMenuOpen])
+
   const handleConnect = (e: React.MouseEvent) => {
     e.preventDefault()
     setToastOpen(true)
+  }
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
   }
 
   return (
@@ -103,7 +147,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
-          {navItems.map(({ href, label, icon: Icon }) => (
+          {currentNavItems.map(({ href, label, icon: Icon }) => (
             <Link
               key={label}
               href={href}
@@ -130,12 +174,129 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-all duration-200 hover:border-[#FF6B6B] hover:text-[#FF6B6B] lg:hidden"
+          onClick={toggleMobileMenu}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-all duration-200 hover:border-[#FF6B6B] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/5 lg:hidden"
         >
-          <Menu className="h-5 w-5" aria-hidden="true" />
-          <span className="sr-only">Open navigation</span>
+          <div className="relative w-5 h-5">
+            {/* Hamburger to X animation */}
+            <span 
+              className={`absolute left-0 top-1 h-0.5 w-5 bg-current transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? 'rotate-45 top-2' : 'rotate-0'
+              }`}
+            />
+            <span 
+              className={`absolute left-0 top-2 h-0.5 w-5 bg-current transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+              }`}
+            />
+            <span 
+              className={`absolute left-0 top-3 h-0.5 w-5 bg-current transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? '-rotate-45 top-2' : 'rotate-0'
+              }`}
+            />
+          </div>
+          <span className="sr-only">
+            {mobileMenuOpen ? "Close navigation" : "Open navigation"}
+          </span>
         </button>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={closeMobileMenu}
+          />
+          
+          {/* Menu Panel */}
+          <div 
+            className="absolute left-0 right-0 top-0 mx-auto max-w-md bg-[#ECECEC] shadow-2xl border-b border-black/10 animate-in slide-in-from-top duration-300 ease-out"
+            style={{
+              backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+              backgroundSize: "12px 12px",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between border-b border-black/10 p-6">
+              <Link href="/" onClick={closeMobileMenu} className="group relative flex items-center gap-3">
+                <span className="flex flex-col leading-none">
+                  <span
+                    className="text-[20px] font-semibold tracking-[-0.04em] text-[#FF6B6B] transition-colors duration-200 group-hover:text-[#FF5555]"
+                    style={{
+                      fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    }}
+                  >
+                    avacado
+                  </span>
+                </span>
+              </Link>
+              <button
+                type="button"
+                onClick={closeMobileMenu}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-all duration-200 hover:border-[#FF6B6B] hover:bg-[#FF6B6B] hover:text-white"
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+                <span className="sr-only">Close menu</span>
+              </button>
+            </div>
+
+            {/* Mobile Menu Navigation */}
+            <nav className="p-6">
+              <ul className="space-y-2">
+                {currentNavItems.map(({ href, label, icon: Icon }, index) => (
+                  <li 
+                    key={label}
+                    className="animate-in fade-in slide-in-from-top duration-200 ease-out"
+                    style={{ 
+                      animationDelay: `${(index + 1) * 50}ms`,
+                      animationFillMode: 'both'
+                    }}
+                  >
+                    <Link
+                      href={href}
+                      onClick={closeMobileMenu}
+                      className="group flex items-center gap-4 rounded-[2px] border border-transparent p-4 font-mono text-[12px] uppercase tracking-[0.18em] text-[#3F3F3F] transition-all duration-200 hover:border-[#FF6B6B]/20 hover:bg-white/70 hover:text-[#FF6B6B] hover:shadow-sm"
+                    >
+                      <span className="grid h-8 w-8 place-items-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B]/70 transition-all duration-200 group-hover:text-[#FF6B6B] group-hover:shadow-[0_4px_12px_rgba(255,107,107,0.25)] group-hover:border-[#FF6B6B]/30">
+                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                      <span className="transition-all duration-200">{label}</span>
+                      <div className="ml-auto opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
+                        <svg className="h-4 w-4 text-[#FF6B6B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Mobile Menu Footer */}
+            <div 
+              className="border-t border-black/10 p-6 animate-in fade-in slide-in-from-bottom duration-300 ease-out"
+              style={{ 
+                animationDelay: '200ms',
+                animationFillMode: 'both'
+              }}
+            >
+              <p className="text-center font-mono text-[10px] uppercase tracking-[0.18em] text-[#666666]">
+                Launch Soon
+              </p>
+              <div className="mt-2 text-center">
+                <div className="inline-flex h-2 w-16 items-center justify-center">
+                  <div className="h-1 w-full rounded-full bg-black/10">
+                    <div className="h-full w-3/4 rounded-full bg-[#FF6B6B] animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
