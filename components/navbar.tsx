@@ -12,7 +12,7 @@ const navItems = [
     icon: BookOpen,
   },
   {
-    href: "#blog",
+    href: "/blog",
     label: "Blog",
     icon: FileText,
   },
@@ -25,7 +25,7 @@ const docsNavItems = [
     icon: Home,
   },
   {
-    href: "#blog",
+    href: "/blog",
     label: "Blog",
     icon: FileText,
   },
