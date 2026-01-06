@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Lenis from "lenis";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { FeatureCard } from "@/components/feature-card";
 import { Navbar } from "@/components/navbar";
 import { SectionHeader } from "@/components/section-header";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { WaitlistCounter } from "@/components/waitlist-counter";
-import { SakuraParticles } from "@/components/sakura-particles";
 import {
   TextReveal,
   ScrollTextFill,
@@ -21,11 +20,7 @@ import {
   Parallax,
   ScrollProgressLine,
 } from "@/components/scroll-animations";
-import "./pixel-section.css";
-import "./animated-lines-enhanced.css";
-
-// Custom cubic-bezier easing similar to AVAX/Polygon
-const customEase = [0.22, 1, 0.36, 1] as const;
+import { ChevronRight, Shield, Lock, Eye, Users, Clock, Layers } from "lucide-react";
 
 export default function Home() {
   useEffect(() => {
@@ -54,7 +49,7 @@ export default function Home() {
     <>
       <ScrollProgressLine />
       <Navbar />
-      <SakuraParticles />
+
       <main
         className="min-h-screen"
         style={{
