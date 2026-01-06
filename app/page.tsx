@@ -9,6 +9,7 @@ import { Navbar } from "@/components/navbar";
 import { SectionHeader } from "@/components/section-header";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { WaitlistCounter } from "@/components/waitlist-counter";
+import { SakuraParticles } from "@/components/sakura-particles";
 import {
   TextReveal,
   ScrollTextFill,
@@ -53,6 +54,7 @@ export default function Home() {
     <>
       <ScrollProgressLine />
       <Navbar />
+      <SakuraParticles />
       <main
         className="min-h-screen"
         style={{
@@ -62,261 +64,227 @@ export default function Home() {
           backgroundSize: "12px 12px",
         }}
       >
-        {/* Hero - Bento Grid Layout */}
+        {/* Background dotted surface removed from global scope */}
+        {/* Hero */}
         <section
-          className="relative min-h-screen overflow-hidden"
+          className="relative min-h-[75vh] overflow-hidden"
           style={{
+            // subtle dotted background
             backgroundColor: "#ECECEC",
             backgroundImage:
               "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
             backgroundSize: "12px 12px",
           }}
         >
-          {/* Main Grid Container - Desktop Only */}
-          <div className="hidden lg:grid relative z-[1] min-h-screen grid-cols-[320px_1fr_280px]">
-            {/* Left Panel */}
-            <div className="flex flex-col border-r border-black/10">
-              {/* Top Text Section */}
-              <div className="p-8 pt-24">
-                <SlideIn direction="left" delay={0.1}>
-                  <p
-                    className="text-[15px] leading-relaxed"
-                    style={{
-                      color: "#3A3A3A",
-                      fontFamily: "Inter, -apple-system, sans-serif",
-                    }}
-                  >
-                    Avacado powers a new era of private crypto transactions. Zero-knowledge proofs. Regulatory compliant. All coming together to form one unified privacy layer.
-                  </p>
-                </SlideIn>
-              </div>
+          {/* Horizontal Lines */}
+          <div className="animated-horizontal-line line-top absolute inset-x-0 top-16 z-[2] w-full lg:top-24" />
+          <div className="animated-horizontal-line line-bottom absolute inset-x-0 bottom-16 z-[2] w-full lg:bottom-24" />
 
-              {/* Card Section - Moved Up */}
-              <div className="border-t border-black/10">
-                <SlideIn direction="up" delay={0.3}>
-                  <div
-                    className="relative h-[220px] overflow-hidden"
-                    style={{
-                      background: "linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)",
-                    }}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                      <Image
-                        src="/avocado.png"
-                        alt=""
-                        width={200}
-                        height={200}
-                        className="object-contain"
-                      />
-                    </div>
-                    <div className="relative z-10 p-6 h-full flex flex-col justify-end">
-                      <p
-                        className="text-[11px] font-semibold uppercase tracking-[0.2em] mb-2"
-                        style={{ color: "rgba(255,255,255,0.8)" }}
-                      >
-                        PRIVACY FIRST
-                      </p>
-                      <p
-                        className="text-[14px] leading-relaxed"
-                        style={{ color: "#FFFFFF" }}
-                      >
-                        The future of crypto privacy starts here—built for institutions and individuals alike.
-                      </p>
-                      <a
-                        href="#waitlist"
-                        className="inline-flex items-center gap-2 mt-4 text-[13px] font-medium text-white hover:gap-3 transition-all"
-                      >
-                        Learn more <span>→</span>
-                      </a>
-                    </div>
-                  </div>
-                </SlideIn>
-              </div>
+          {/* Vertical Lines */}
+          <div className="absolute inset-x-0 top-17 bottom-17 z-0 mx-auto max-w-[1200px] lg:top-24 lg:bottom-24">
+            <div className="absolute left-6 top-0 h-full w-[1px] bg-black/20 lg:left-16" />
+            <div className="absolute right-6 top-0 h-full w-[1px] bg-black/20 lg:right-16" />
+          </div>
 
-              {/* Spacer to push content up */}
-              <div className="flex-1" />
-            </div>
-
-            {/* Center Panel - Main Visual */}
-            <div className="relative flex items-center justify-center p-8 pt-20 lg:pt-8">
-              {/* Decorative Elements */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-[20%] right-[15%] w-32 h-32 border border-black/10 rounded-sm" />
-                <div className="absolute top-[25%] right-[12%] w-20 h-20 border border-black/10 rounded-sm" />
-                <div className="absolute bottom-[25%] left-[10%] w-24 h-16 border border-black/10 rounded-sm" />
-                <div className="absolute bottom-[30%] left-[15%] w-16 h-24 border border-black/10 rounded-sm" />
-              </div>
-
-              {/* Main Avocado Image */}
-              <FadeInScale delay={0.2}>
-                <div className="relative">
-                  <Image
-                    src="/avocado.png"
-                    alt=" do - Privacy Wallet"
-                    width={500}
-                    height={500}
-                    priority
-                    className="h-[45vh] md:h-[55vh] lg:h-[65vh] w-auto object-contain drop-shadow-2xl"
-                    style={{
-                      filter: "contrast(1.05) saturate(0.9)",
-                    }}
-                  />
-                </div>
-              </FadeInScale>
-
-              {/* Scroll Indicator */}
-              <div className="absolute bottom-8 right-8 text-right">
-                <FadeIn delay={0.8}>
-                  <p
-                    className="text-[12px] font-semibold tracking-wide"
-                    style={{ color: "#666" }}
-                  >
-                    SCROLL
-                  </p>
-                  <p
-                    className="text-[11px]"
-                    style={{ color: "#999" }}
-                  >
-                    to explore page
-                  </p>
-                  <div className="mt-2 w-[1px] h-8 bg-black/20 ml-auto" />
-                </FadeIn>
-              </div>
-            </div>
-
-            {/* Right Panel */}
-            <div className="flex flex-col border-l border-black/10">
-              {/* Logo/Brand Section */}
-              <div className="p-8 pt-24">
-                <FadeIn delay={0.2}>
-                  <div
-                    className="text-[32px] font-bold"
-                    style={{ color: "#FF6B6B" }}
-                  >
-                    🥑
-                  </div>
-                </FadeIn>
-              </div>
-
-              {/* Time Display */}
-              <div className="p-8">
-                <FadeIn delay={0.4}>
-                  <p
-                    className="text-[36px] font-light"
-                    style={{
-                      color: "#3A3A3A",
-                      fontFamily: "Inter, -apple-system, sans-serif",
-                    }}
-                  >
-                    {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}
-                  </p>
-                  <p
-                    className="text-[13px] mt-1"
-                    style={{ color: "#888" }}
-                  >
-                    {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-                  </p>
-                </FadeIn>
-              </div>
-
-              {/* Tagline */}
-              <div className="p-8">
-                <FadeIn delay={0.6}>
+          {/* Content */}
+          <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1200px] px-6 py-16 lg:px-16 lg:py-24">
+            <div className="grid h-full w-full min-h-[70vh] gap-8 md:grid-cols-2">
+              {/* Left */}
+              <div className="relative top-6 flex flex-col justify-between px-2 pt-4 lg:top-10 lg:px-4">
+                <div>
+                  {/* Animated hero title - AVAX style character reveal */}
                   <h1
-                    className="text-[28px] leading-tight"
+                    className="text-balance font-bold leading-[1.02] text-[48px] sm:text-[64px] lg:text-[96px]"
                     style={{
-                      fontFamily: "'Cormorant Garamond', Georgia, serif",
-                      fontWeight: 500,
-                      color: "#2A2A2A",
+                      letterSpacing: "-0.02em",
+                      color: "#FF6B6B",
+                      fontFamily:
+                        "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                     }}
                   >
-                    The <em style={{ fontStyle: "italic" }}>Privacy Wallet</em>
+                    <TextReveal>The Privacy Wallet</TextReveal>
                     <br />
-                    For Your Crypto
+                    <TextReveal>For Your Crypto</TextReveal>
                   </h1>
-                </FadeIn>
+
+                  {/* Feature bullets - staggered slide in */}
+                  <StaggerContainer
+                    className="mt-8 space-y-2 text-[14px] font-semibold uppercase tracking-[0.08em]"
+                    staggerDelay={0.15}
+                  >
+                    <motion.p
+                      variants={staggerItemVariants}
+                      style={{
+                        color: "#FF6B6B",
+                        fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      }}
+                    >
+                      PRIVACY FIRST TRADING
+                    </motion.p>
+                    <motion.p
+                      variants={staggerItemVariants}
+                      style={{
+                        color: "#FF6B6B",
+                        fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      }}
+                    >
+                      100% ANONYMOUS
+                    </motion.p>
+                    <motion.p
+                      variants={staggerItemVariants}
+                      style={{
+                        color: "#FF6B6B",
+                        fontFamily: "JetBrains Mono, Monaco, 'Courier New', monospace",
+                      }}
+                    >
+                      COMPLIANCE FRIENDLY
+                    </motion.p>
+                  </StaggerContainer>
+
+                  {/* CTA - slide in from left */}
+                  <SlideIn direction="left" delay={0.5}>
+                    <a
+                      href="#waitlist"
+                      className="inline-flex h-10 items-center justify-center rounded-md border px-6 text-sm font-semibold transition-colors"
+                      style={{
+                        backgroundColor: "#FF6B6B",
+                        borderColor: "#FF6B6B",
+                        color: "#FFFFFF",
+                        transform: "translateY(22px)",
+                      }}
+                      onMouseEnter={(e) => {
+                        const el = e.currentTarget;
+                        el.style.backgroundColor = "transparent";
+                        el.style.color = "#FF6B6B";
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.currentTarget;
+                        el.style.backgroundColor = "#FF6B6B";
+                        el.style.color = "#FFFFFF";
+                      }}
+                    >
+                      Join Waitlist →
+                    </a>
+                  </SlideIn>
+                </div>
               </div>
 
-              {/* Spacer */}
-              <div className="flex-1" />
+              {/* Right image - with parallax effect */}
+              <Parallax speed={-0.2} className="relative flex min-h-[70vh] items-center justify-center">
+                <FadeInScale delay={0.3}>
+                  <div className="relative h-full w-full">
+                    <Image
+                      src="/avocado.png"
+                      alt="Large grayscale avocado illustration on the right"
+                      width={1200}
+                      height={1200}
+                      priority
+                      className="h-[70vh] w-full object-contain"
+                      style={{
+                        filter: "sharpness(1.15) contrast(1.15) saturate(0.75)",
+                        transform: "translateY(24px)",
+                      }}
+                    />
+                  </div>
+                </FadeInScale>
+              </Parallax>
             </div>
           </div>
 
-          {/* Mobile Layout */}
-          <div className="lg:hidden relative z-[1] min-h-screen flex flex-col">
-            {/* Mobile Header Spacer */}
-            <div className="h-20" />
-
-            {/* Mobile Content */}
-            <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
-              {/* Tagline */}
-              <FadeIn delay={0.2}>
-                <h1
-                  className="text-center text-[28px] sm:text-[36px] md:text-[42px] leading-tight mb-6"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', Georgia, serif",
-                    fontWeight: 500,
-                    color: "#2A2A2A",
-                  }}
-                >
-                  The <em style={{ fontStyle: "italic" }}>Privacy Wallet</em>
-                  <br />
-                  For Your Crypto
-                </h1>
-              </FadeIn>
-
-              {/* Avocado Image */}
-              <FadeInScale delay={0.3}>
+          {/* Bottom banner */}
+          <div
+            className="absolute left-0 right-0 z-[1] border-t border-black/10 py-4"
+            style={{
+              bottom: "-70px",
+              backgroundColor: "#ECECEC",
+              backgroundImage:
+                "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+              backgroundSize: "12px 12px",
+            }}
+          >
+            {/* <div className="mx-auto max-w-[1200px] px-6">
+              <p
+                className="text-center"
+                style={{
+                  fontFamily: "JetBrains Mono, Monaco, Courier New, monospace",
+                  color: "#333333",
+                  fontSize: "13px",
+                  marginBottom: "12px",
+                }}
+              >
+                
+                <span style={{ color: "#00A667" }}>EXCLUSIVELY LAUNCHING ON </span>
+              </p>
+              <div className="mb-4 flex justify-center">
                 <Image
-                  src="/avocado.png"
-                  alt="Avacado - Privacy Wallet"
-                  width={400}
-                  height={400}
-                  priority
-                  className="h-[35vh] sm:h-[40vh] w-auto object-contain my-6"
+                  src="/avax.png"
+                  alt="Avalanche logo"
+                  width={140}
+                  height={140}
                   style={{
-                    filter: "contrast(1.05) saturate(0.9)",
+                    filter: "grayscale(1) brightness(1.1)",
+                    opacity: 0.6,
                   }}
                 />
-              </FadeInScale>
-
-              {/* CTA Button */}
-              <FadeIn delay={0.5}>
-                <a
-                  href="#waitlist"
-                  className="inline-flex h-12 items-center justify-center rounded-md border px-8 text-sm font-semibold transition-colors"
+              </div>
+            </div> */}
+            <div className="h-px w-full bg-black/10" />
+            <div className="mx-auto max-w-[1200px] px-6 pt-4">
+              <div className="flex items-center justify-center gap-12">
+                <span
+                  className="font-semibold"
                   style={{
-                    backgroundColor: "#FF6B6B",
-                    borderColor: "#FF6B6B",
-                    color: "#FFFFFF",
+                    color: "#AAAAAA",
+                    fontSize: "20px",
+                    fontFamily:
+                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
-                  Join Waitlist →
-                </a>
-              </FadeIn>
-
-              {/* Mobile Description */}
-              <FadeIn delay={0.6}>
-                <p
-                  className="text-center text-[13px] sm:text-[14px] leading-relaxed mt-8 max-w-[320px]"
+                  base
+                </span>
+                <span
+                  className="font-normal"
                   style={{
-                    color: "#666",
-                    fontFamily: "Inter, -apple-system, sans-serif",
+                    color: "#AAAAAA",
+                    fontSize: "20px",
+                    fontFamily:
+                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                   }}
                 >
-                  Zero-knowledge proofs. Regulatory compliant. One unified privacy layer.
-                </p>
-              </FadeIn>
-            </div>
-
-            {/* Mobile Scroll Indicator */}
-            <div className="pb-8 text-center">
-              <FadeIn delay={0.8}>
-                <p className="text-[11px] tracking-wide" style={{ color: "#999" }}>
-                  SCROLL TO EXPLORE
-                </p>
-                <div className="mt-2 w-[1px] h-6 bg-black/20 mx-auto" />
-              </FadeIn>
+                  avalanche
+                </span>
+                <span
+                  className="font-bold"
+                  style={{
+                    color: "#AAAAAA",
+                    fontSize: "20px",
+                    fontFamily:
+                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                  }}
+                >
+                  eth
+                </span>
+                <span
+                  className="font-semibold"
+                  style={{
+                    color: "#AAAAAA",
+                    fontSize: "20px",
+                    fontFamily:
+                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                  }}
+                >
+                  1inch
+                </span>
+                <span
+                  className="font-medium"
+                  style={{
+                    color: "#AAAAAA",
+                    fontSize: "20px",
+                    fontFamily:
+                      "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                  }}
+                ></span>
+              </div>
             </div>
           </div>
         </section>
@@ -339,9 +307,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Why Avacado Section - Stacked Cards */}
+        {/* Feature section */}
         <section
-          className="relative py-20 lg:py-32"
+          className="section-paper section-frame mx-auto mt-28 max-w-[860px] md:max-w-[980px] lg:max-w-[1080px] px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-12 relative"
+          aria-labelledby="greptile-section-title"
           style={{
             backgroundColor: "#ECECEC",
             backgroundImage:
@@ -349,220 +318,63 @@ export default function Home() {
             backgroundSize: "12px 12px",
           }}
         >
-          {/* Large Title */}
-          <div className="px-6 lg:px-16 mb-12 lg:mb-20">
-            <FadeIn delay={0.1}>
-              <h2
-                className="text-[48px] sm:text-[72px] md:text-[96px] lg:text-[140px] leading-[0.9] tracking-tight"
-                style={{
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontStyle: "italic",
-                  fontWeight: 400,
-                }}
-              >
-                <span style={{ color: "#2A2A2A" }}>WHY </span>
-                <span style={{ color: "#FF6B6B" }}>AVACADO</span>
-              </h2>
-            </FadeIn>
+          {/* Overlay toggle for pixel matching */}
+          {/* <div className="mb-4">
+            <button
+              type="button"
+              onClick={() => setShowOverlay((v) => !v)}
+              className="rounded-[2px] border border-[color:var(--color-border)] bg-card px-2.5 py-1.5 text-[11px] font-mono tracking-wide text-foreground"
+              aria-pressed={showOverlay}
+            >
+              {showOverlay ? "Hide" : "Show"} overlay
+            </button>
+            <span className="sr-only">
+              Toggles an overlay of the provided screenshot for alignment.
+            </span>
+          </div> */}
+
+          <SectionHeader />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
+            {/* Card 1 - slide from left */}
+            <SlideIn direction="left" delay={0}>
+              <FeatureCard
+                accent="green"
+                tag="Compliance, redefined."
+                title="Privacy, Reinvented"
+                description="Verify identity once, share zero data — thanks to zero-knowledge proofs."
+              />
+            </SlideIn>
+            {/* Card 2 - slide from right */}
+            <SlideIn direction="right" delay={0.1}>
+              <FeatureCard
+                accent="orange"
+                tag="Complete privacy for digital assets."
+                title="Encrypted Token Transactions"
+                description="Send tokens privately using cutting-edge encrypted ERC20 standards."
+              />
+            </SlideIn>
+            {/* Card 3 - slide from left */}
+            <SlideIn direction="left" delay={0.2}>
+              <FeatureCard
+                accent="yellow"
+                tag="Transparency without data exposure."
+                title="Auditor-Ready Privacy Layer"
+                description="Stay compliant while keeping transaction details completely hidden."
+              />
+            </SlideIn>
+            {/* Card 4 - slide from right */}
+            <SlideIn direction="right" delay={0.3}>
+              <FeatureCard
+                accent="orange"
+                tag="One protocol,to rule them all"
+                title="Interoperability by Design"
+                description="Convert every ERC20 token to its private counterpart and back, seamlessly."
+              />
+            </SlideIn>
           </div>
 
-          {/* Stacked Cards Container */}
-          <div className="relative px-6 lg:px-16">
-            {/* Card 1 - Blue */}
-            <div className="sticky top-[70px] lg:top-[90px] z-10 mb-4">
-              <div
-                className="relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-                style={{
-                  backgroundColor: "#3B82F6",
-                  clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 40px 100%, 0 calc(100% - 40px))",
-                }}
-              >
-                {/* Corner accents */}
-                <div className="absolute top-0 right-0 w-[40px] h-[40px] border-l border-b border-white/20" style={{ transform: "translate(0, 0) rotate(0)" }} />
-                <div className="absolute bottom-0 left-0 w-[40px] h-[40px] border-t border-r border-white/20" />
-                {/* Inner border effect */}
-                <div className="absolute inset-[1px] border border-white/10 pointer-events-none" style={{ clipPath: "polygon(0 0, calc(100% - 39px) 0, 100% 39px, 100% 100%, 39px 100%, 0 calc(100% - 39px))" }} />
-                {/* Header */}
-                <div className="flex items-center gap-4 px-6 lg:px-8 h-[56px] border-b border-white/10">
-                  <span
-                    className="text-[11px] font-mono tracking-wider"
-                    style={{ color: "rgba(255,255,255,0.4)" }}
-                  >
-                    01
-                  </span>
-                  <h3
-                    className="text-[16px] sm:text-[20px] lg:text-[24px] font-semibold tracking-tight"
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: "Inter, -apple-system, sans-serif",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    PRIVATE. COMPLIANT. SECURE.
-                  </h3>
-                </div>
-                {/* Content */}
-                <div className="px-6 lg:px-8 pb-10 pt-6 min-h-[280px]">
-                  <p
-                    className="text-[14px] lg:text-[15px] leading-[1.7] max-w-[520px]"
-                    style={{ color: "rgba(255,255,255,0.85)" }}
-                  >
-                    Zero-knowledge proofs power a network of private, efficient transactions that finalize instantly. Accompanied by a best-in-class compliance framework, Avacado is the platform of choice for institutions and users ready for true financial privacy.
-                  </p>
-                </div>
-                {/* Decorative corner element */}
-                <div className="absolute bottom-4 right-4 w-8 h-8 border border-white/20 rounded-full" />
-              </div>
-            </div>
-
-            {/* Card 2 - Light Blue */}
-            <div className="sticky top-[128px] lg:top-[148px] z-20 mb-4">
-              <div
-                className="relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-                style={{
-                  backgroundColor: "#60A5FA",
-                  clipPath: "polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px)",
-                }}
-              >
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-[40px] h-[40px] border-r border-b border-white/20" />
-                <div className="absolute bottom-0 right-0 w-[40px] h-[40px] border-t border-l border-white/20" />
-                {/* Inner border effect */}
-                <div className="absolute inset-[1px] border border-white/10 pointer-events-none" style={{ clipPath: "polygon(39px 0, 100% 0, 100% calc(100% - 39px), calc(100% - 39px) 100%, 0 100%, 0 39px)" }} />
-                {/* Header */}
-                <div className="flex items-center gap-4 px-6 lg:px-8 h-[56px] border-b border-white/10">
-                  <span
-                    className="text-[11px] font-mono tracking-wider"
-                    style={{ color: "rgba(255,255,255,0.4)" }}
-                  >
-                    02
-                  </span>
-                  <h3
-                    className="text-[16px] sm:text-[20px] lg:text-[24px] font-semibold tracking-tight"
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: "Inter, -apple-system, sans-serif",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    INFINITELY SCALABLE
-                  </h3>
-                </div>
-                {/* Content */}
-                <div className="px-6 lg:px-8 pb-10 pt-6 min-h-[280px]">
-                  <p
-                    className="text-[14px] lg:text-[15px] leading-[1.7] max-w-[520px]"
-                    style={{ color: "rgba(255,255,255,0.85)" }}
-                  >
-                    Avacado is where Web3's big ideas scale with confidence. Whether it's a single transaction or launching enterprise-grade privacy solutions, Avacado makes it easy to scale up — or across — in an interconnected ecosystem.
-                  </p>
-                </div>
-                {/* Decorative element */}
-                <div className="absolute bottom-4 right-4 w-12 h-[2px] bg-white/20" />
-                <div className="absolute bottom-6 right-4 w-8 h-[2px] bg-white/20" />
-              </div>
-            </div>
-
-            {/* Card 3 - Coral/Red */}
-            <div className="sticky top-[186px] lg:top-[206px] z-30 mb-4">
-              <div
-                className="relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-                style={{
-                  backgroundColor: "#FF6B6B",
-                  clipPath: "polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 40px 100%, 0 calc(100% - 40px))",
-                }}
-              >
-                {/* Corner accents */}
-                <div className="absolute top-0 right-0 w-[40px] h-[40px] border-l border-b border-white/20" />
-                <div className="absolute bottom-0 left-0 w-[40px] h-[40px] border-t border-r border-white/20" />
-                {/* Inner border effect */}
-                <div className="absolute inset-[1px] border border-white/10 pointer-events-none" style={{ clipPath: "polygon(0 0, calc(100% - 39px) 0, 100% 39px, 100% 100%, 39px 100%, 0 calc(100% - 39px))" }} />
-                {/* Header */}
-                <div className="flex items-center gap-4 px-6 lg:px-8 h-[56px] border-b border-white/10">
-                  <span
-                    className="text-[11px] font-mono tracking-wider"
-                    style={{ color: "rgba(255,255,255,0.4)" }}
-                  >
-                    03
-                  </span>
-                  <h3
-                    className="text-[16px] sm:text-[20px] lg:text-[24px] font-semibold tracking-tight"
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: "Inter, -apple-system, sans-serif",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    ENCRYPTED TOKENS
-                  </h3>
-                </div>
-                {/* Content */}
-                <div className="px-6 lg:px-8 pb-10 pt-6 min-h-[280px]">
-                  <p
-                    className="text-[14px] lg:text-[15px] leading-[1.7] max-w-[520px]"
-                    style={{ color: "rgba(255,255,255,0.85)" }}
-                  >
-                    Whatever your use-case, Avacado makes private transactions economically feasible, simpler to execute, and quicker to settle. The protocol is anchored by cutting-edge encrypted ERC20 standards, enabling any token to become private seamlessly.
-                  </p>
-                </div>
-                {/* Decorative element */}
-                <div className="absolute bottom-4 right-4">
-                  <div className="w-6 h-6 border-2 border-white/20 rotate-45" />
-                </div>
-              </div>
-            </div>
-
-            {/* Card 4 - Salmon */}
-            <div className="sticky top-[244px] lg:top-[264px] z-40">
-              <div
-                className="relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
-                style={{
-                  backgroundColor: "#F87171",
-                  clipPath: "polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px)",
-                }}
-              >
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-[40px] h-[40px] border-r border-b border-white/20" />
-                <div className="absolute bottom-0 right-0 w-[40px] h-[40px] border-t border-l border-white/20" />
-                {/* Inner border effect */}
-                <div className="absolute inset-[1px] border border-white/10 pointer-events-none" style={{ clipPath: "polygon(39px 0, 100% 0, 100% calc(100% - 39px), calc(100% - 39px) 100%, 0 100%, 0 39px)" }} />
-                {/* Header */}
-                <div className="flex items-center gap-4 px-6 lg:px-8 h-[56px] border-b border-white/10">
-                  <span
-                    className="text-[11px] font-mono tracking-wider"
-                    style={{ color: "rgba(255,255,255,0.4)" }}
-                  >
-                    04
-                  </span>
-                  <h3
-                    className="text-[16px] sm:text-[20px] lg:text-[24px] font-semibold tracking-tight"
-                    style={{
-                      color: "#FFFFFF",
-                      fontFamily: "Inter, -apple-system, sans-serif",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    GLOBAL COMMUNITY
-                  </h3>
-                </div>
-                {/* Content */}
-                <div className="px-6 lg:px-8 pb-10 pt-6 min-h-[280px]">
-                  <p
-                    className="text-[14px] lg:text-[15px] leading-[1.7] max-w-[520px]"
-                    style={{ color: "rgba(255,255,255,0.85)" }}
-                  >
-                    Avacado is more than just a privacy protocol. It's a global community of builders, creators, and collaborators, all together on a mission to bring financial privacy to Web3. An open ecosystem where knowledge and resources are shared freely.
-                  </p>
-                </div>
-                {/* Decorative element */}
-                <div className="absolute bottom-4 right-4 flex gap-1">
-                  <div className="w-2 h-2 bg-white/20 rounded-full" />
-                  <div className="w-2 h-2 bg-white/30 rounded-full" />
-                  <div className="w-2 h-2 bg-white/40 rounded-full" />
-                </div>
-              </div>
-            </div>
-          </div>
+          {showOverlay && <div className="ref-overlay" aria-hidden="true" />}
         </section>
 
         {/* Powered by section */}
