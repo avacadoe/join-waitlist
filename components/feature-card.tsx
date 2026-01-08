@@ -36,6 +36,7 @@ export function FeatureCard({
         "border border-[color:var(--color-border)]",
         "shadow-[inset_0_0_0_1px_var(--color-border)]",
         "p-6 md:p-7 lg:p-8",
+        "h-full min-h-[200px] flex flex-col",
         className,
       )}
       style={{
@@ -48,32 +49,13 @@ export function FeatureCard({
         <span className="font-mono text-[10px] md:text-[11px] uppercase tracking-[0.18em]" style={{ color }}>
           [ {tag} ]
         </span>
-
-        {/* corner action square */}
-        <span
-          className="inline-flex h-4 w-4 items-center justify-center rounded-[2px]"
-          style={{ backgroundColor: color }}
-          aria-hidden="true"
-        >
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 10 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="pointer-events-none"
-          >
-            <path d="M2 2h6v6" stroke="white" strokeWidth="1" />
-            <path d="M8 2L2 8" stroke="white" strokeWidth="1" />
-          </svg>
-        </span>
       </div>
 
       {/* Title */}
       <h3 className="text-[22px] leading-[1.15] md:text-[24px] lg:text-[26px] font-semibold text-balance">{title}</h3>
 
       {/* Description */}
-      <p className="mt-3 text-[12px] md:text-[13px] leading-[1.45] text-muted-foreground max-w-[58ch]">{description}</p>
+      <p className="mt-3 text-[12px] md:text-[13px] leading-[1.45] text-muted-foreground max-w-[58ch] flex-1">{description}</p>
 
       {/* Image (optional) */}
       {imageSrc && (
