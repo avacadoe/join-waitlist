@@ -235,7 +235,6 @@ export default function DocsPage() {
                     <p className="text-[14px] mb-2"><strong>Current Stage:</strong> Conceptual Design & Planning</p>
                     <p className="text-[14px]">
                       This documentation presents our vision and technical approach. Implementation is planned for future development.
-                      Join our waitlist to stay updated on progress.
                     </p>
                   </InfoBox>
                 </Section>
@@ -649,10 +648,32 @@ export default function DocsPage() {
                   </ul>
 
                   <InfoBox title="Join Us" variant="highlight" className="mt-8">
-                    <p className="text-[14px]">
-                      We're actively building and would love your support. Join our waitlist at avacado.app to stay 
-                      updated on development progress and be among the first to know when we launch.
+                    <p className="text-[14px] text-center mb-4">
+                      We're actively building and would love your support. Be among the first to know when we launch.
                     </p>
+                    <div className="text-center">
+                      <a
+                        href="/"
+                        className="inline-flex h-10 items-center justify-center rounded-[2px] border px-6 text-sm font-semibold transition-colors"
+                        style={{
+                          backgroundColor: "#FF6B6B",
+                          borderColor: "#FF6B6B",
+                          color: "#FFFFFF",
+                        }}
+                        onMouseEnter={(e) => {
+                          const el = e.currentTarget;
+                          el.style.backgroundColor = "transparent";
+                          el.style.color = "#FF6B6B";
+                        }}
+                        onMouseLeave={(e) => {
+                          const el = e.currentTarget;
+                          el.style.backgroundColor = "#FF6B6B";
+                          el.style.color = "#FFFFFF";
+                        }}
+                      >
+                        Join Waitlist →
+                      </a>
+                    </div>
                   </InfoBox>
                 </Section>
 
@@ -661,9 +682,6 @@ export default function DocsPage() {
                   <p className="text-[14px] text-[#666] text-center mb-3">
                     This documentation presents our conceptual design and vision for Avocado. 
                     Implementation is planned for future development, and all specifications are subject to change.
-                  </p>
-                  <p className="text-[14px] text-[#FF6B6B] text-center font-semibold">
-                    Join our waitlist to follow our journey from concept to reality.
                   </p>
                 </div>
               </div>

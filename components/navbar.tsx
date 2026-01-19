@@ -11,11 +11,6 @@ const navItems = [
     label: "Docs",
     icon: BookOpen,
   },
-  {
-    href: "/blog",
-    label: "Blog",
-    icon: FileText,
-  },
 ]
 
 const docsNavItems = [
@@ -24,16 +19,12 @@ const docsNavItems = [
     label: "Home",
     icon: Home,
   },
-  {
-    href: "/blog",
-    label: "Blog",
-    icon: FileText,
-  },
 ]
 
 export function Navbar() {
   const [toastOpen, setToastOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [menuClosing, setMenuClosing] = useState(false)
   const pathname = usePathname()
   
   // Use different nav items based on current page
@@ -133,7 +124,7 @@ export function Navbar() {
       </div>
 
       <div className="relative z-[1] mx-auto flex h-[68px] w-full max-w-[1200px] items-center justify-between px-6 lg:h-[88px] lg:px-16">
-        <Link href="#home" className="group relative flex items-center gap-3">
+        <Link href="#home" className="group relative flex items-center gap-3 flex-shrink-0">
           <span className="flex flex-col leading-none">
             <span
               className="text-[24px] font-semibold tracking-[-0.04em] text-[#FF6B6B]"
@@ -162,138 +153,124 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* <div className="hidden items-center gap-3 lg:flex">
-          <button
-            type="button"
-            onClick={handleConnect}
-            className="group inline-flex h-10 items-center justify-center rounded-[2px] border border-[#FF6B6B] bg-[#FF6B6B] px-6 text-[12px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_10px_30px_rgba(255,107,107,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-transparent hover:text-[#FF6B6B]"
-          >
-            Connect Wallet
-          </button>
-        </div> */}
-
+        {/* Mobile menu button */}
         <button
           type="button"
           onClick={toggleMobileMenu}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-all duration-200 hover:border-[#FF6B6B] hover:text-[#FF6B6B] hover:bg-[#FF6B6B]/5 lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-colors hover:bg-[#FF6B6B] hover:text-white lg:hidden flex-shrink-0 ml-auto"
         >
-          <div className="relative w-5 h-5">
+          <div className="relative w-6 h-6 flex items-center justify-center">
             {/* Hamburger to X animation */}
             <span 
-              className={`absolute left-0 top-1 h-0.5 w-5 bg-current transition-all duration-300 ease-in-out ${
-                mobileMenuOpen ? 'rotate-45 top-2' : 'rotate-0'
+              className={`absolute h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'
               }`}
             />
             <span 
-              className={`absolute left-0 top-2 h-0.5 w-5 bg-current transition-all duration-300 ease-in-out ${
+              className={`absolute h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
                 mobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
               }`}
             />
             <span 
-              className={`absolute left-0 top-3 h-0.5 w-5 bg-current transition-all duration-300 ease-in-out ${
-                mobileMenuOpen ? '-rotate-45 top-2' : 'rotate-0'
+              className={`absolute h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'
               }`}
             />
           </div>
-          <span className="sr-only">
-            {mobileMenuOpen ? "Close navigation" : "Open navigation"}
-          </span>
+          <span className="sr-only">Toggle menu</span>
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
+        <div className="lg:hidden">
+          {/* Backdrop - only covers area below navbar */}
           <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+            className="fixed inset-x-0 bottom-0 z-40 bg-black/20"
+            style={{
+              top: '68px', // Start below navbar
+              animation: "fadeIn 0.2s ease-out forwards"
+            }}
             onClick={closeMobileMenu}
           />
           
           {/* Menu Panel */}
           <div 
-            className="absolute left-0 right-0 top-0 mx-auto max-w-md bg-[#ECECEC] shadow-2xl border-b border-black/10 animate-in slide-in-from-top duration-300 ease-out"
+            className="fixed inset-x-0 z-50 bg-[#ECECEC] shadow-lg border-b border-black/10"
             style={{
+              top: '68px', // Position below navbar (mobile navbar height)
               backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
               backgroundSize: "12px 12px",
+              animation: "slideDownFromNavbar 0.3s ease-out forwards"
             }}
-            onClick={(e) => e.stopPropagation()}
           >
-            {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between border-b border-black/10 p-6">
-              <Link href="/" onClick={closeMobileMenu} className="group relative flex items-center gap-3">
-                <span className="flex flex-col leading-none">
-                  <span
-                    className="text-[20px] font-semibold tracking-[-0.04em] text-[#FF6B6B] transition-colors duration-200 group-hover:text-[#FF5555]"
-                    style={{
-                      fontFamily: "'Scto Grotesk A', Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                    }}
-                  >
-                    avacado
-                  </span>
-                </span>
-              </Link>
-              <button
-                type="button"
-                onClick={closeMobileMenu}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-all duration-200 hover:border-[#FF6B6B] hover:bg-[#FF6B6B] hover:text-white"
-              >
-                <X className="h-5 w-5" aria-hidden="true" />
-                <span className="sr-only">Close menu</span>
-              </button>
-            </div>
+            <style jsx>{`
+              @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+              }
+              
+              @keyframes slideDownFromNavbar {
+                from { 
+                  transform: translateY(-100%);
+                  opacity: 0;
+                }
+                to { 
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
 
-            {/* Mobile Menu Navigation */}
-            <nav className="p-6">
-              <ul className="space-y-2">
-                {currentNavItems.map(({ href, label, icon: Icon }, index) => (
-                  <li 
-                    key={label}
-                    className="animate-in fade-in slide-in-from-top duration-200 ease-out"
-                    style={{ 
-                      animationDelay: `${(index + 1) * 50}ms`,
-                      animationFillMode: 'both'
-                    }}
-                  >
+              @keyframes slideUpToNavbar {
+                from { 
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+                to { 
+                  transform: translateY(-100%);
+                  opacity: 0;
+                }
+              }
+
+              @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+              }
+
+              .menu-closing {
+                animation: slideUpToNavbar 0.3s ease-in forwards !important;
+              }
+
+              .backdrop-closing {
+                animation: fadeOut 0.2s ease-in forwards !important;
+              }
+
+              @media (min-width: 1024px) {
+                .mobile-menu {
+                  top: 88px; /* Desktop navbar height */
+                }
+              }
+            `}</style>
+
+            {/* Navigation Only */}
+            <nav className="px-6 py-4">
+              <ul className="space-y-3">
+                {currentNavItems.map(({ href, label, icon: Icon }) => (
+                  <li key={label}>
                     <Link
                       href={href}
                       onClick={closeMobileMenu}
-                      className="group flex items-center gap-4 rounded-[2px] border border-transparent p-4 font-mono text-[12px] uppercase tracking-[0.18em] text-[#3F3F3F] transition-all duration-200 hover:border-[#FF6B6B]/20 hover:bg-white/70 hover:text-[#FF6B6B] hover:shadow-sm"
+                      className="flex items-center gap-3 p-3 rounded-[2px] text-[#3F3F3F] hover:bg-white/70 hover:text-[#FF6B6B] transition-colors"
                     >
-                      <span className="grid h-8 w-8 place-items-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B]/70 transition-all duration-200 group-hover:text-[#FF6B6B] group-hover:shadow-[0_4px_12px_rgba(255,107,107,0.25)] group-hover:border-[#FF6B6B]/30">
-                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      <Icon className="h-5 w-5 text-[#FF6B6B]" />
+                      <span className="font-mono text-[12px] uppercase tracking-[0.18em]">
+                        {label}
                       </span>
-                      <span className="transition-all duration-200">{label}</span>
-                      <div className="ml-auto opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
-                        <svg className="h-4 w-4 text-[#FF6B6B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
                     </Link>
                   </li>
                 ))}
               </ul>
             </nav>
-
-            {/* Mobile Menu Footer */}
-            <div 
-              className="border-t border-black/10 p-6 animate-in fade-in slide-in-from-bottom duration-300 ease-out"
-              style={{ 
-                animationDelay: '200ms',
-                animationFillMode: 'both'
-              }}
-            >
-              <p className="text-center font-mono text-[10px] uppercase tracking-[0.18em] text-[#666666]">
-                Launch Soon
-              </p>
-              <div className="mt-2 text-center">
-                <div className="inline-flex h-2 w-16 items-center justify-center">
-                  <div className="h-1 w-full rounded-full bg-black/10">
-                    <div className="h-full w-3/4 rounded-full bg-[#FF6B6B] animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       )}

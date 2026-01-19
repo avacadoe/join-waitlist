@@ -20,7 +20,7 @@ import {
   Parallax,
   ScrollProgressLine,
 } from "@/components/scroll-animations";
-import { ChevronRight, Shield, Lock, Eye, Users, Clock, Layers } from "lucide-react";
+import { ChevronRight, Shield, Lock, Eye, Users, Clock, Layers, MessageCircle } from "lucide-react";
 
 export default function Home() {
   useEffect(() => {
@@ -468,6 +468,22 @@ export default function Home() {
                   </p>
                 </div>
                 <WaitlistForm />
+                
+                {/* Discord CTA */}
+                <div className="mt-6 pt-6 border-t border-black/10">
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="text-[13px] text-[#3A3A3A]">Or join our community:</span>
+                    <a
+                      href="https://discord.gg/JyRttUd6X5"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-[13px] font-medium text-[#5865F2] hover:bg-[#5865F2]/5 rounded-[2px] transition-colors"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      Join Discord
+                    </a>
+                  </div>
+                </div>
               </div>
             </SlideIn>
 
@@ -649,6 +665,19 @@ export default function Home() {
                   className="transition-opacity hover:opacity-70"
                 >
                   Join Waitlist
+                </a>
+                <span
+                  className="hidden h-[1px] w-12 bg-black/15 md:block"
+                  aria-hidden="true"
+                />
+                <a
+                  href="https://discord.gg/JyRttUd6X5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-opacity hover:opacity-70 flex items-center gap-1"
+                >
+                  <MessageCircle className="w-3 h-3" />
+                  Discord
                 </a>
                 <span
                   className="hidden h-[1px] w-12 bg-black/15 md:block"
