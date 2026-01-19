@@ -170,7 +170,7 @@ export default function Home() {
                   <div className="relative h-full w-full">
                     <Image
                       src="/avocado.png"
-                      alt="Large grayscale avocado illustration on the right"
+                      alt="Large grayscale avacado illustration on the right"
                       width={1200}
                       height={1200}
                       priority

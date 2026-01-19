@@ -126,7 +126,7 @@ export default function DocsPage() {
                   fontFamily: "'Scto Grotesk A', Inter, -apple-system, sans-serif",
                 }}
               >
-                Avocado Protocol
+                Avacado Protocol
               </h1>
               <p className="text-[18px] lg:text-[20px] text-[#3A3A3A] max-w-[680px] leading-relaxed">
                 Our vision for a privacy-preserving token system that will balance user confidentiality with regulatory compliance through zero-knowledge proofs and auditor oversight.
@@ -597,7 +597,7 @@ export default function DocsPage() {
                     </ComparisonCard>
 
                     <ComparisonCard
-                      title="Avocado Two-Phase System"
+                      title="Avacado Two-Phase System"
                       variant="good"
                     >
                       <div className="space-y-3">
@@ -695,7 +695,7 @@ export default function DocsPage() {
                 {/* Footer Note */}
                 <div className="mt-16 p-6 bg-white border border-black/10 rounded-[2px]">
                   <p className="text-[14px] text-[#666] text-center mb-3">
-                    This documentation presents our conceptual design and vision for Avocado. 
+                    This documentation presents our conceptual design and vision for Avacado. 
                     Implementation is planned for future development, and all specifications are subject to change.
                   </p>
                 </div>
