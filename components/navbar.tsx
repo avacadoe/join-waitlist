@@ -1,8 +1,6 @@
-"use client"
-
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { BookOpen, FileText, Menu, X, Home } from "lucide-react"
 
 const navItems = [
@@ -21,6 +19,33 @@ const docsNavItems = [
   },
 ]
 
+// Mobile-aware docs link component
+function DocsLink({ children, className, onClick }: { children: React.ReactNode, className: string, onClick?: () => void }) {
+  const router = useRouter();
+  
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onClick) onClick();
+    
+    const isMobile = () => {
+      if (typeof window === 'undefined') return false;
+      return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
+
+    if (isMobile()) {
+      router.push('/docs/mobile');
+    } else {
+      router.push('/docs');
+    }
+  };
+
+  return (
+    <a href="/docs" onClick={handleClick} className={className}>
+      {children}
+    </a>
+  );
+}
+
 export function Navbar() {
   const [toastOpen, setToastOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -28,7 +53,7 @@ export function Navbar() {
   const pathname = usePathname()
   
   // Use different nav items based on current page
-  const currentNavItems = pathname === '/docs' ? docsNavItems : navItems
+  const currentNavItems = (pathname === '/docs' || pathname === '/docs/mobile') ? docsNavItems : navItems
 
   // Auto-hide toast after 2.5s
   useEffect(() => {
@@ -69,7 +94,7 @@ export function Navbar() {
 
   return (
     <header
-      className="fixed top-0 w-full z-50 border-b border-black/10 bg-[#ECECEC]/90 backdrop-blur transition-colors relative"
+      className="fixed top-0 w-full z-[100] border-b border-black/10 bg-[#ECECEC] backdrop-blur-md transition-colors"
       style={{
         backgroundColor: "#ECECEC",
         backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
@@ -139,17 +164,30 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-7 lg:flex">
           {currentNavItems.map(({ href, label, icon: Icon }) => (
-            <Link
-              key={label}
-              href={href}
-              className="group relative flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#3F3F3F] transition-colors duration-200 hover:text-[#FF6B6B]"
-            >
-              <span className="grid h-7 w-7 place-items-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B]/70 transition-all duration-200 group-hover:text-[#FF6B6B] group-hover:shadow-[0_4px_12px_rgba(255,107,107,0.25)]">
-                <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-              </span>
-              <span>{label}</span>
-              <span className="pointer-events-none absolute bottom-[-12px] left-0 right-0 mx-auto h-[1px] w-0 bg-[#FF6B6B] transition-all duration-300 group-hover:w-full" />
-            </Link>
+            label === "Docs" ? (
+              <DocsLink
+                key={label}
+                className="group relative flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#3F3F3F] transition-colors duration-200 hover:text-[#FF6B6B]"
+              >
+                <span className="grid h-7 w-7 place-items-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B]/70 transition-all duration-200 group-hover:text-[#FF6B6B] group-hover:shadow-[0_4px_12px_rgba(255,107,107,0.25)]">
+                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+                <span>{label}</span>
+                <span className="pointer-events-none absolute bottom-[-12px] left-0 right-0 mx-auto h-[1px] w-0 bg-[#FF6B6B] transition-all duration-300 group-hover:w-full" />
+              </DocsLink>
+            ) : (
+              <Link
+                key={label}
+                href={href}
+                className="group relative flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#3F3F3F] transition-colors duration-200 hover:text-[#FF6B6B]"
+              >
+                <span className="grid h-7 w-7 place-items-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B]/70 transition-all duration-200 group-hover:text-[#FF6B6B] group-hover:shadow-[0_4px_12px_rgba(255,107,107,0.25)]">
+                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+                <span>{label}</span>
+                <span className="pointer-events-none absolute bottom-[-12px] left-0 right-0 mx-auto h-[1px] w-0 bg-[#FF6B6B] transition-all duration-300 group-hover:w-full" />
+              </Link>
+            )
           ))}
         </nav>
 
@@ -257,16 +295,28 @@ export function Navbar() {
               <ul className="space-y-3">
                 {currentNavItems.map(({ href, label, icon: Icon }) => (
                   <li key={label}>
-                    <Link
-                      href={href}
-                      onClick={closeMobileMenu}
-                      className="flex items-center gap-3 p-3 rounded-[2px] text-[#3F3F3F] hover:bg-white/70 hover:text-[#FF6B6B] transition-colors"
-                    >
-                      <Icon className="h-5 w-5 text-[#FF6B6B]" />
-                      <span className="font-mono text-[12px] uppercase tracking-[0.18em]">
-                        {label}
-                      </span>
-                    </Link>
+                    {label === "Docs" ? (
+                      <DocsLink
+                        onClick={closeMobileMenu}
+                        className="flex items-center gap-3 p-3 rounded-[2px] text-[#3F3F3F] hover:bg-white/70 hover:text-[#FF6B6B] transition-colors"
+                      >
+                        <Icon className="h-5 w-5 text-[#FF6B6B]" />
+                        <span className="font-mono text-[12px] uppercase tracking-[0.18em]">
+                          {label}
+                        </span>
+                      </DocsLink>
+                    ) : (
+                      <Link
+                        href={href}
+                        onClick={closeMobileMenu}
+                        className="flex items-center gap-3 p-3 rounded-[2px] text-[#3F3F3F] hover:bg-white/70 hover:text-[#FF6B6B] transition-colors"
+                      >
+                        <Icon className="h-5 w-5 text-[#FF6B6B]" />
+                        <span className="font-mono text-[12px] uppercase tracking-[0.18em]">
+                          {label}
+                        </span>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

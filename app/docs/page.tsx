@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Lenis from "lenis";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
@@ -8,6 +9,20 @@ import { ScrollProgressLine } from "@/components/scroll-animations";
 import { ChevronRight, Shield, Lock, Eye, Users, Clock, Layers } from "lucide-react";
 
 export default function DocsPage() {
+  const router = useRouter();
+
+  // Mobile detection and redirect
+  useEffect(() => {
+    const isMobile = () => {
+      if (typeof window === 'undefined') return false;
+      return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    };
+
+    if (isMobile()) {
+      router.push('/docs/mobile');
+      return;
+    }
+  }, [router]);
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
@@ -82,7 +97,7 @@ export default function DocsPage() {
       <ScrollProgressLine />
       <Navbar />
       <main
-        className="min-h-screen overflow-x-hidden pt-16 lg:pt-20"
+        className="min-h-screen"
         style={{
           backgroundColor: "#ECECEC",
           backgroundImage:
@@ -91,7 +106,7 @@ export default function DocsPage() {
         }}
       >
         {/* Header */}
-        <section className="border-b border-black/10 pt-8 pb-16 lg:pt-12 lg:pb-20">
+        <section className="border-b border-black/10 pt-24 pb-16 lg:pt-32 lg:pb-20">
           <div className="mx-auto max-w-[1200px] px-6 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -106,7 +121,7 @@ export default function DocsPage() {
                 </span>
               </div>
               <h1
-                className="text-[32px] sm:text-[48px] lg:text-[72px] font-bold tracking-[-0.04em] text-[#1F1F1F] leading-[1.1] mb-6 overflow-constrain"
+                className="text-[48px] lg:text-[72px] font-bold tracking-[-0.04em] text-[#1F1F1F] leading-[1.1] mb-6"
                 style={{
                   fontFamily: "'Scto Grotesk A', Inter, -apple-system, sans-serif",
                 }}
@@ -175,12 +190,12 @@ export default function DocsPage() {
                 <>
                   {/* Backdrop */}
                   <div
-                    className="lg:hidden fixed inset-0 bg-black/50 z-40"
+                    className="lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-black/50 z-40"
                     onClick={() => setMobileMenuOpen(false)}
                   />
                   
                   {/* Menu */}
-                  <div className="lg:hidden fixed inset-y-0 right-0 w-[min(320px,90vw)] bg-white z-50 shadow-2xl overflow-y-auto">
+                  <div className="lg:hidden fixed top-16 right-0 bottom-0 w-[min(320px,90vw)] bg-white z-50 shadow-2xl overflow-y-auto">
                     <div className="p-6">
                       <div className="flex items-center justify-between mb-6">
                         <h3 className="text-[18px] font-semibold text-[#1F1F1F]">Contents</h3>
@@ -224,7 +239,7 @@ export default function DocsPage() {
               )}
 
               {/* Content */}
-              <div className="prose prose-neutral max-w-none overflow-x-hidden">
+              <div className="prose prose-neutral max-w-none">
                 {/* Overview */}
                 <Section id="overview" title="Overview">
                   <p>
@@ -760,7 +775,7 @@ function ProcessStep({ step, title, children }: { step: string; title: string; c
 
 function CodeBlock({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <pre className={`p-4 bg-[#1F1F1F] text-[#E0E0E0] rounded-[2px] overflow-x-auto font-mono text-[13px] max-w-full ${className}`}>
+    <pre className={`p-4 bg-[#1F1F1F] text-[#E0E0E0] rounded-[2px] overflow-x-auto font-mono text-[13px] ${className}`}>
       <code>{children}</code>
     </pre>
   );
