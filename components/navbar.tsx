@@ -2,23 +2,33 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { BookOpen, FileText, Menu } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { BookOpen, FileText, Menu, X, Home } from "lucide-react"
 
 const navItems = [
   {
-    href: "#blog",
-    label: "Blog",
-    icon: FileText,
-  },
-  {
-    href: "#docs",
+    href: "/docs",
     label: "Docs",
     icon: BookOpen,
   },
 ]
 
+const docsNavItems = [
+  {
+    href: "/",
+    label: "Home",
+    icon: Home,
+  },
+]
+
 export function Navbar() {
   const [toastOpen, setToastOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [menuClosing, setMenuClosing] = useState(false)
+  const pathname = usePathname()
+  
+  // Use different nav items based on current page
+  const currentNavItems = pathname === '/docs' ? docsNavItems : navItems
 
   // Auto-hide toast after 2.5s
   useEffect(() => {
@@ -27,9 +37,34 @@ export function Navbar() {
     return () => clearTimeout(id)
   }, [toastOpen])
 
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false)
+    }
+    if (mobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [mobileMenuOpen])
+
   const handleConnect = (e: React.MouseEvent) => {
     e.preventDefault()
     setToastOpen(true)
+  }
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
   }
 
   return (
@@ -89,7 +124,7 @@ export function Navbar() {
       </div>
 
       <div className="relative z-[1] mx-auto flex h-[68px] w-full max-w-[1200px] items-center justify-between px-6 lg:h-[88px] lg:px-16">
-        <Link href="#home" className="group relative flex items-center gap-3">
+        <Link href="#home" className="group relative flex items-center gap-3 flex-shrink-0">
           <span className="flex flex-col leading-none">
             <span
               className="text-[24px] font-semibold tracking-[-0.04em] text-[#FF6B6B]"
@@ -103,7 +138,7 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
-          {navItems.map(({ href, label, icon: Icon }) => (
+          {currentNavItems.map(({ href, label, icon: Icon }) => (
             <Link
               key={label}
               href={href}
@@ -118,24 +153,127 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* <div className="hidden items-center gap-3 lg:flex">
-          <button
-            type="button"
-            onClick={handleConnect}
-            className="group inline-flex h-10 items-center justify-center rounded-[2px] border border-[#FF6B6B] bg-[#FF6B6B] px-6 text-[12px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_10px_30px_rgba(255,107,107,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-transparent hover:text-[#FF6B6B]"
-          >
-            Connect Wallet
-          </button>
-        </div> */}
-
+        {/* Mobile menu button */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-all duration-200 hover:border-[#FF6B6B] hover:text-[#FF6B6B] lg:hidden"
+          onClick={toggleMobileMenu}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-[2px] border border-black/10 bg-white/70 text-[#FF6B6B] transition-colors hover:bg-[#FF6B6B] hover:text-white lg:hidden flex-shrink-0 ml-auto"
         >
-          <Menu className="h-5 w-5" aria-hidden="true" />
-          <span className="sr-only">Open navigation</span>
+          <div className="relative w-6 h-6 flex items-center justify-center">
+            {/* Hamburger to X animation */}
+            <span 
+              className={`absolute h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'
+              }`}
+            />
+            <span 
+              className={`absolute h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+              }`}
+            />
+            <span 
+              className={`absolute h-0.5 w-5 bg-current transform transition-all duration-300 ease-in-out ${
+                mobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1.5'
+              }`}
+            />
+          </div>
+          <span className="sr-only">Toggle menu</span>
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden">
+          {/* Backdrop - only covers area below navbar */}
+          <div 
+            className="fixed inset-x-0 bottom-0 z-40 bg-black/20"
+            style={{
+              top: '68px', // Start below navbar
+              animation: "fadeIn 0.2s ease-out forwards"
+            }}
+            onClick={closeMobileMenu}
+          />
+          
+          {/* Menu Panel */}
+          <div 
+            className="fixed inset-x-0 z-50 bg-[#ECECEC] shadow-lg border-b border-black/10"
+            style={{
+              top: '68px', // Position below navbar (mobile navbar height)
+              backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
+              backgroundSize: "12px 12px",
+              animation: "slideDownFromNavbar 0.3s ease-out forwards"
+            }}
+          >
+            <style jsx>{`
+              @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+              }
+              
+              @keyframes slideDownFromNavbar {
+                from { 
+                  transform: translateY(-100%);
+                  opacity: 0;
+                }
+                to { 
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
+
+              @keyframes slideUpToNavbar {
+                from { 
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+                to { 
+                  transform: translateY(-100%);
+                  opacity: 0;
+                }
+              }
+
+              @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+              }
+
+              .menu-closing {
+                animation: slideUpToNavbar 0.3s ease-in forwards !important;
+              }
+
+              .backdrop-closing {
+                animation: fadeOut 0.2s ease-in forwards !important;
+              }
+
+              @media (min-width: 1024px) {
+                .mobile-menu {
+                  top: 88px; /* Desktop navbar height */
+                }
+              }
+            `}</style>
+
+            {/* Navigation Only */}
+            <nav className="px-6 py-4">
+              <ul className="space-y-3">
+                {currentNavItems.map(({ href, label, icon: Icon }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      onClick={closeMobileMenu}
+                      className="flex items-center gap-3 p-3 rounded-[2px] text-[#3F3F3F] hover:bg-white/70 hover:text-[#FF6B6B] transition-colors"
+                    >
+                      <Icon className="h-5 w-5 text-[#FF6B6B]" />
+                      <span className="font-mono text-[12px] uppercase tracking-[0.18em]">
+                        {label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
