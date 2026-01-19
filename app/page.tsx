@@ -51,7 +51,7 @@ export default function Home() {
       <Navbar />
 
       <main
-        className="min-h-screen"
+        className="min-h-screen overflow-x-hidden pt-16 lg:pt-20"
         style={{
           backgroundColor: "#ECECEC",
           backgroundImage:
@@ -82,14 +82,14 @@ export default function Home() {
           </div>
 
           {/* Content */}
-          <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1200px] px-6 py-16 lg:px-16 lg:py-24">
+          <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1200px] px-6 py-16 lg:px-16 lg:py-24 overflow-x-hidden">
             <div className="grid h-full w-full min-h-[70vh] gap-8 md:grid-cols-2">
               {/* Left */}
               <div className="relative top-6 flex flex-col justify-between px-2 pt-4 lg:top-10 lg:px-4">
                 <div>
                   {/* Animated hero title - AVAX style character reveal */}
                   <h1
-                    className="text-balance font-bold leading-[1.02] text-[48px] sm:text-[64px] lg:text-[96px]"
+                    className="text-balance font-bold leading-[1.02] text-[32px] sm:text-[48px] md:text-[64px] lg:text-[96px] overflow-constrain"
                     style={{
                       letterSpacing: "-0.02em",
                       color: "#FF6B6B",
@@ -292,7 +292,7 @@ export default function Home() {
           <div className="relative z-[1] flex mt-[40px] mb-[40px] items-center justify-center">
             <div className="w-full text-center">
               <ScrollTextFill
-                className="mx-auto max-w-[920px] text-[15px] md:text-[17px] lg:text-[22px] leading-relaxed font-medium"
+                className="mx-auto max-w-[min(920px,95vw)] text-[15px] md:text-[17px] lg:text-[22px] leading-relaxed font-medium overflow-constrain"
                 baseColor="rgba(58, 58, 58, 0.25)"
                 fillColor="#3A3A3A"
               >
@@ -304,7 +304,7 @@ export default function Home() {
 
         {/* Feature section */}
         <section
-          className="section-paper section-frame mx-auto mt-28 max-w-[860px] md:max-w-[980px] lg:max-w-[1080px] px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-12 relative"
+          className="section-paper section-frame mx-auto mt-28 max-w-[min(860px,95vw)] md:max-w-[min(980px,95vw)] lg:max-w-[min(1080px,95vw)] px-4 md:px-6 lg:px-8 py-8 md:py-10 lg:py-12 relative overflow-x-hidden"
           aria-labelledby="greptile-section-title"
           style={{
             backgroundColor: "#ECECEC",
@@ -374,7 +374,7 @@ export default function Home() {
 
         {/* Powered by section */}
         <section
-          className="mx-auto mt-20 max-w-[1080px] px-4 md:px-6 lg:px-8"
+          className="mx-auto mt-20 max-w-[min(1080px,95vw)] px-4 md:px-6 lg:px-8 overflow-x-hidden"
           aria-labelledby="powered-by-title"
         >
           <div className="flex items-center justify-center">
@@ -444,7 +444,7 @@ export default function Home() {
           className="mt-24 px-6 pb-24 md:px-10"
           aria-labelledby="waitlist-title"
         >
-          <div className="mx-auto flex w-full max-w-[980px] flex-col items-center gap-10 md:flex-row md:items-center md:justify-center">
+          <div className="mx-auto flex w-full max-w-[min(980px,95vw)] flex-col items-center gap-10 md:flex-row md:items-center md:justify-center overflow-x-hidden">
             {/* Form - slide from left */}
             <SlideIn direction="left" className="w-full md:w-1/2">
               <div className="h-full rounded-[12px] border border-black/10 bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">

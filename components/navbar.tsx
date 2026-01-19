@@ -69,7 +69,7 @@ export function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-black/10 bg-[#ECECEC]/90 backdrop-blur transition-colors relative"
+      className="fixed top-0 w-full z-50 border-b border-black/10 bg-[#ECECEC]/90 backdrop-blur transition-colors relative"
       style={{
         backgroundColor: "#ECECEC",
         backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)",
