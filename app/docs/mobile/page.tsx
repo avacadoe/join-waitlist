@@ -142,7 +142,7 @@ export default function MobileDocsPage() {
                   fontFamily: "'Scto Grotesk A', Inter, -apple-system, sans-serif",
                 }}
               >
-                Avocado Protocol
+                Avacado Protocol
               </h1>
               <p className="text-[16px] text-[#3A3A3A] leading-relaxed">
                 Our vision for a privacy-preserving token system that will balance user confidentiality with regulatory compliance through zero-knowledge proofs and auditor oversight.
@@ -236,7 +236,7 @@ export default function MobileDocsPage() {
               <div id="overview" className="mb-16 scroll-mt-24">
                 <h2 className="text-[24px] font-bold text-[#1F1F1F] mb-6 pb-4 border-b border-black/10">Overview</h2>
                 <p className="text-[16px] text-[#3A3A3A] leading-relaxed mb-6">
-                  Avocado is a proposed privacy-preserving token system to be built on encrypted ERC (EERC) technology. 
+                  Avacado is a proposed privacy-preserving token system to be built on encrypted ERC (EERC) technology. 
                   The system will enable private transactions while maintaining regulatory compliance through an innovative auditor system.
                 </p>
                 <div className="p-5 bg-[#FFF5E1] border border-[#FF6B6B]/20 rounded-[2px]">
@@ -465,7 +465,7 @@ export default function MobileDocsPage() {
               <div id="withdrawal" className="mb-16 scroll-mt-24">
                 <h2 className="text-[24px] font-bold text-[#1F1F1F] mb-6 pb-4 border-b border-black/10">Proposed Two-Phase Private Withdrawal System</h2>
                 <p className="text-[16px] text-[#3A3A3A] leading-relaxed mb-8">
-                  The two-phase withdrawal system will be the cornerstone of Avocado's privacy guarantees. 
+                  The two-phase withdrawal system will be the cornerstone of Avacado's privacy guarantees. 
                   It will separate intent from execution, creating anonymity sets through batching.
                 </p>
 
@@ -682,7 +682,7 @@ export default function MobileDocsPage() {
               {/* Footer */}
               <div className="mt-16 p-6 bg-white border border-black/10 rounded-[2px]">
                 <p className="text-[14px] text-[#666] text-center mb-3">
-                  This documentation presents our conceptual design and vision for Avocado. 
+                  This documentation presents our conceptual design and vision for Avacado. 
                   Implementation is planned for future development, and all specifications are subject to change.
                 </p>
               </div>
